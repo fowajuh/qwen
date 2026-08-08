@@ -9,6 +9,9 @@ import { redis, cache } from './config/redis.js';
 import { requestIdMiddleware, securityHeaders, corsConfig } from './middleware/security.middleware.js';
 import { validate } from './middleware/validation.middleware.js';
 import authRoutes from './routes/auth.routes.js';
+import messagesRoutes from './routes/messages.routes.js';
+import { scoutRoutes } from './routes/scout.routes.js';
+import { profileRoutes } from './routes/profile.routes.js';
 
 // Validate environment variables BEFORE anything else
 const requiredEnvVars = ['JWT_SECRET', 'DATABASE_URL'];
@@ -145,11 +148,128 @@ app.get('/health', async (req, res) => {
 });
 
 // ============================================
-// API ROUTES
+// API ROUTES - SCOUTING SYSTEM
 // ============================================
 
-// Auth routes (registration, login, password reset, etc.)
-app.use('/api/auth', authRoutes);
+import { getScoutingService } from './services/scouting.service.js';
+
+// Scouting endpoint - scan area and return real businesses/housing
+app.post('/api/scout/scan', async (req, res) => {
+  try {
+    const { lat, lng, radiusKm = 5 } = req.body;
+    
+    if (!lat || !lng) {
+      return res.status(400).json({ 
+        success: false, 
+        error: 'Latitude and longitude are required' 
+      });
+    }
+
+    const scoutingService = getScoutingService();
+    const result = await scoutingService.scanAndReturn(parseFloat(lat), parseFloat(lng), parseFloat(radiusKm));
+
+    res.json({
+      success: true,
+      data: {
+        businesses: result.businesses,
+        housingListings: result.housingListings,
+        metadata: {
+          scanDurationMs: result.scanDurationMs,
+          location: { lat, lng },
+          radiusKm,
+        }
+      }
+    });
+  } catch (error) {
+    console.error('Error in scout scan:', error);
+    res.status(500).json({ 
+      success: false, 
+      error: 'Failed to scan location',
+      details: (error as Error).message 
+    });
+  }
+});
+
+// Get nearby businesses from database
+app.get('/api/scout/businesses', async (req, res) => {
+  try {
+    const { lat, lng, radiusKm = 5, limit = 50 } = req.query;
+    
+    if (!lat || !lng) {
+      return res.status(400).json({ 
+        success: false, 
+        error: 'Latitude and longitude are required' 
+      });
+    }
+
+    const scoutingService = getScoutingService();
+    const businesses = await scoutingService.getNearbyBusinesses(
+      parseFloat(lat as string), 
+      parseFloat(lng as string), 
+      parseFloat(radiusKm as string),
+      parseInt(limit as string)
+    );
+
+    res.json({ success: true, data: businesses });
+  } catch (error) {
+    console.error('Error fetching nearby businesses:', error);
+    res.status(500).json({ 
+      success: false, 
+      error: 'Failed to fetch businesses' 
+    });
+  }
+});
+
+// Get nearby housing from database
+app.get('/api/scout/housing', async (req, res) => {
+  try {
+    const { lat, lng, radiusKm = 5, limit = 50 } = req.query;
+    
+    if (!lat || !lng) {
+      return res.status(400).json({ 
+        success: false, 
+        error: 'Latitude and longitude are required' 
+      });
+    }
+
+    const scoutingService = getScoutingService();
+    const housing = await scoutingService.getNearbyHousing(
+      parseFloat(lat as string), 
+      parseFloat(lng as string), 
+      parseFloat(radiusKm as string),
+      parseInt(limit as string)
+    );
+
+    res.json({ success: true, data: housing });
+  } catch (error) {
+    console.error('Error fetching nearby housing:', error);
+    res.status(500).json({ 
+      success: false, 
+      error: 'Failed to fetch housing' 
+    });
+  }
+});
+
+// Agent status endpoint
+app.get('/api/scout/agents', async (req, res) => {
+  try {
+    const scoutingService = getScoutingService();
+    const orchestrator = (scoutingService as any).orchestrator;
+    
+    res.json({
+      success: true,
+      data: {
+        agents: orchestrator.getAgentNames(),
+        status: orchestrator.getAgentStatus(),
+      }
+    });
+  } catch (error) {
+    res.status(500).json({ 
+      success: false, 
+      error: 'Failed to get agent status' 
+    });
+  }
+});
 
 // Business routes with caching
 app.get('/api/businesses', async (req, res) => {
@@ -192,12 +312,21 @@ app.get('/api/housing', async (req, res) => {
     // Cache for 5 minutes
     await cache.set(cacheKey, listings, 300);
     
-    res.json({ success: true, data: listings, fromCache: false });
+    res.json({ success: true, data: listings });
   } catch (error) {
     console.error('Error fetching housing:', error);
     res.status(500).json({ success: false, error: 'Failed to fetch housing' });
   }
 });
+
+// Messages API routes
+app.use('/api/messages', messagesRoutes);
+
+// Profile API routes
+app.use('/api/profile', profileRoutes);
+
+// Scout API routes
+app.use('/api/scout', scoutRoutes);
 
 // ==================== ERROR HANDLING ====================
 

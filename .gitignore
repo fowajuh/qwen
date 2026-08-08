@@ -2,7 +2,7 @@
 # Dependencies
 node_modules/
 
-# Build outputs
+# Build artifacts
 dist/
 build/
 target/
@@ -10,21 +10,19 @@ target/
 # Environment variables
 .env
 .env.local
-.env.*
+*.env.*
 
 # IDE files
 .vscode/
 .idea/
 *.swp
 *.swo
+*.tmp
 
 # Logs
 *.log
 
-# Temporary files
-*.tmp
-
-# Python cache (if any Python files exist in project)
+# Python cache (if present in project)
 __pycache__/
 *.pyc
 *.pyo
@@ -35,11 +33,6 @@ coverage/
 htmlcov/
 .coverage
 
-# Database migration backups
-*.sql.bak
-*.sql~
-
-# TypeScript/JavaScript build artifacts
-*.js.map
-*.tsbuildinfo
+# Compressed archives
+*.tar.gz
 ```
