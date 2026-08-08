@@ -11,9 +11,10 @@ import {
   MapPin, List, Layers, Navigation, Star, Phone, Globe, 
   ChevronRight, X, Plus, Share2, Bookmark, BookmarkCheck, 
   AlertCircle, Loader2, Search, Filter, Maximize2, Menu,
-  ChevronDown, Zap, Shield, TrendingUp
+  ChevronDown, Zap, Shield, TrendingUp, Sparkles
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { PremiumIllustration, EmotionalIllustrations } from "@/components/ui/premium-illustration";
 import Map, { Marker, Popup, NavigationControl, ScaleControl, FullscreenControl, GeolocateControl } from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import Supercluster from "supercluster";
@@ -587,50 +588,108 @@ function MapPage() {
           </div>
         </div>
 
-        {/* Loading State - Enhanced */}
+        {/* Loading State - Billion-Dollar Premium */}
         {(scoutLoading || locLoading) && (
           <motion.div 
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-[500]"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="absolute inset-0 z-[500] bg-gradient-to-br from-indigo-900/90 via-purple-900/90 to-black/90 backdrop-blur-xl flex flex-col items-center justify-center"
           >
-            <div className="bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl px-6 py-4 rounded-2xl shadow-2xl flex items-center gap-3 border border-gray-200/50">
-              <Loader2 className="w-5 h-5 animate-spin text-indigo-600" />
-              <span className="text-sm font-semibold">AI Scouts scanning area...</span>
-            </div>
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="mb-6"
+            >
+              <PremiumIllustration 
+                name="consumer-journey" 
+                size="xl" 
+                animate={true}
+                alt="Scanning your area"
+                className="shadow-[0_20px_60px_rgba(99,102,241,0.4)]"
+              />
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3 }}
+              className="flex items-center gap-3"
+            >
+              <Loader2 className="w-6 h-6 animate-spin text-white/80" />
+              <span className="text-white font-semibold text-lg">AI Scouts scanning area...</span>
+            </motion.div>
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5 }}
+              className="text-white/60 text-sm mt-2"
+            >
+              Discovering amazing places near you
+            </motion.p>
           </motion.div>
         )}
 
-        {/* Empty State - Actionable */}
+        {/* Empty State - Billion-Dollar Premium */}
         {!scoutLoading && filtered.length === 0 && (
           <motion.div 
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-[500] text-center"
+            className="absolute inset-0 z-[500] bg-gradient-to-br from-indigo-900/80 via-purple-900/80 to-black/80 backdrop-blur-xl flex items-center justify-center p-6"
           >
-            <div className="bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl p-6 rounded-2xl shadow-2xl border border-gray-200/50 max-w-sm">
-              <div className="w-16 h-16 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center mx-auto mb-3">
-                <AlertCircle className="w-8 h-8 text-gray-400" />
+            <motion.div 
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.2 }}
+              className="text-center max-w-sm"
+            >
+              <div className="mb-6 flex justify-center">
+                <PremiumIllustration 
+                  name="location" 
+                  size="lg" 
+                  animate={true}
+                  alt="No places found"
+                  className="shadow-[0_20px_60px_rgba(99,102,241,0.3)]"
+                />
               </div>
-              <p className="font-semibold mb-1">No places found</p>
-              <p className="text-sm text-gray-500 mb-3">Try adjusting your search or filters</p>
-              <div className="flex gap-2 justify-center">
+              <motion.h3 
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+                className="text-xl font-bold text-white mb-2"
+              >
+                No places found
+              </motion.h3>
+              <motion.p 
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+                className="text-white/70 text-sm mb-6"
+              >
+                Try adjusting your search radius or filters to discover more
+              </motion.p>
+              <motion.div 
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5 }}
+                className="flex gap-3 justify-center"
+              >
                 <Button 
                   variant="outline" 
                   size="sm"
                   onClick={() => { setFilter("All"); setSearchQuery(""); }}
+                  className="bg-white/10 text-white border-white/20 hover:bg-white/20"
                 >
                   Clear Filters
                 </Button>
                 <Button 
                   size="sm"
-                  className="bg-gradient-to-r from-indigo-600 to-purple-600"
+                  className="bg-gradient-to-r from-indigo-500 to-purple-500 text-white shadow-lg hover:shadow-xl"
                   onClick={() => refetch()}
                 >
                   <Zap className="w-4 h-4 mr-1" /> Rescan
                 </Button>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           </motion.div>
         )}
 

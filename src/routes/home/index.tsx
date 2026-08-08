@@ -5,6 +5,7 @@ import { Check, MessageCircle, Share2, Bookmark, Heart, Plus, X, Link as LinkIco
 import { HomeTopTabs } from "@/components/home/home-nav";
 import { useFeed } from "@/hooks/use-real-data";
 import type { ContentItem } from "@/lib/api";
+import { PremiumIllustration, EmotionalIllustrations } from "@/components/ui/premium-illustration";
 
 export const Route = createFileRoute("/home/")({
   head: () => ({
@@ -51,9 +52,29 @@ function HomePage() {
   if (loading && !hasLocation) {
     return (
       <div className="relative w-full h-[100dvh] bg-black text-white flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin w-8 h-8 border-2 border-white/20 border-t-white rounded-full mx-auto mb-4" />
-          <p className="text-sm opacity-70">Loading your local feed...</p>
+        <div className="text-center px-6">
+          <motion.div
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            className="mb-6"
+          >
+            <PremiumIllustration 
+              name="loading" 
+              size="xl" 
+              animate={true}
+              alt="Loading your local feed"
+              className="shadow-[0_20px_60px_rgba(99,102,241,0.3)]"
+            />
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+          >
+            <div className="animate-spin w-8 h-8 border-2 border-white/20 border-t-white rounded-full mx-auto mb-4" />
+            <p className="text-sm opacity-70">Loading your local feed...</p>
+          </motion.div>
         </div>
       </div>
     );
@@ -63,9 +84,46 @@ function HomePage() {
     return (
       <div className="relative w-full h-[100dvh] bg-black text-white flex items-center justify-center">
         <div className="text-center max-w-md px-6">
-          <p className="text-lg font-bold mb-2">Unable to load feed</p>
-          <p className="text-sm opacity-70 mb-4">{error}</p>
-          <button onClick={refresh} className="px-6 py-2 bg-white text-black rounded-full font-bold text-sm">Try Again</button>
+          <motion.div
+            initial={{ scale: 0.8, opacity: 0, rotate: -10 }}
+            animate={{ scale: 1, opacity: 1, rotate: 0 }}
+            transition={{ type: "spring", stiffness: 200, damping: 15 }}
+            className="mb-6"
+          >
+            <PremiumIllustration 
+              name="error" 
+              size="xl" 
+              animate={true}
+              alt="Something went wrong"
+              className="shadow-[0_20px_60px_rgba(99,102,241,0.3)]"
+            />
+          </motion.div>
+          <motion.p 
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="text-lg font-bold mb-2"
+          >
+            Unable to load feed
+          </motion.p>
+          <motion.p 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3 }}
+            className="text-sm opacity-70 mb-4"
+          >
+            {error}
+          </motion.p>
+          <motion.button 
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={refresh} 
+            className="px-6 py-2 bg-white text-black rounded-full font-bold text-sm"
+          >
+            Try Again
+          </motion.button>
         </div>
       </div>
     );
@@ -75,9 +133,46 @@ function HomePage() {
     return (
       <div className="relative w-full h-[100dvh] bg-black text-white flex items-center justify-center">
         <div className="text-center max-w-md px-6">
-          <p className="text-lg font-bold mb-2">Enable Location</p>
-          <p className="text-sm opacity-70 mb-4">Allow location access to see businesses near you.</p>
-          <button onClick={refresh} className="px-6 py-2 bg-white text-black rounded-full font-bold text-sm">Enable Location</button>
+          <motion.div
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            className="mb-6"
+          >
+            <PremiumIllustration 
+              name="mobile" 
+              size="xl" 
+              animate={true}
+              alt="Enable location to discover nearby businesses"
+              className="shadow-[0_20px_60px_rgba(99,102,241,0.3)]"
+            />
+          </motion.div>
+          <motion.p 
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="text-lg font-bold mb-2"
+          >
+            Enable Location
+          </motion.p>
+          <motion.p 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3 }}
+            className="text-sm opacity-70 mb-4"
+          >
+            Allow location access to see businesses near you.
+          </motion.p>
+          <motion.button 
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={refresh} 
+            className="px-6 py-2 bg-white text-black rounded-full font-bold text-sm"
+          >
+            Enable Location
+          </motion.button>
         </div>
       </div>
     );
@@ -87,8 +182,36 @@ function HomePage() {
     return (
       <div className="relative w-full h-[100dvh] bg-black text-white flex items-center justify-center">
         <div className="text-center max-w-md px-6">
-          <p className="text-lg font-bold mb-2">No content nearby yet</p>
-          <p className="text-sm opacity-70">Be the first business to share something!</p>
+          <motion.div
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            className="mb-6"
+          >
+            <PremiumIllustration 
+              name="community" 
+              size="xl" 
+              animate={true}
+              alt="Be the first to share"
+              className="shadow-[0_20px_60px_rgba(99,102,241,0.3)]"
+            />
+          </motion.div>
+          <motion.p 
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="text-lg font-bold mb-2"
+          >
+            No content nearby yet
+          </motion.p>
+          <motion.p 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3 }}
+            className="text-sm opacity-70"
+          >
+            Be the first business to share something!
+          </motion.p>
         </div>
       </div>
     );

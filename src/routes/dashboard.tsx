@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion, AnimatePresence } from "motion/react";
 import { useState } from "react";
 import { KineticHeading, Kicker, Reveal, NexaMark } from "@/components/app-shell";
+import { PremiumIllustration, EmotionalIllustrations } from "@/components/ui/premium-illustration";
 
 export const Route = createFileRoute("/dashboard")({
   head: () => ({
@@ -104,12 +105,21 @@ function DashboardPage() {
         {/* AI Assistant */}
         <Reveal className="mb-10">
           <div className="surface-card p-6 md:p-8">
-            <div className="flex items-center gap-3 mb-6">
-              <NexaMark size={32} />
-              <div>
-                <div className="font-display text-xl">Your AI Employee</div>
-                <div className="text-xs text-muted-foreground">3 suggestions ready for you</div>
+            <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center gap-3">
+                <NexaMark size={32} />
+                <div>
+                  <div className="font-display text-xl">Your AI Employee</div>
+                  <div className="text-xs text-muted-foreground">3 suggestions ready for you</div>
+                </div>
               </div>
+              <PremiumIllustration 
+                name="analytics" 
+                size="sm" 
+                animate={true}
+                alt="AI-powered insights"
+                className="shadow-[0_8px_20px_rgba(0,0,0,0.2)]"
+              />
             </div>
             <div className="grid md:grid-cols-3 gap-4">
               {AI_SUGGESTIONS.filter((_, i) => !dismissed.includes(i)).map((s, i) => (

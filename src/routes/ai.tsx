@@ -2,6 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion, AnimatePresence } from "motion/react";
 import { useState, useEffect } from "react";
 import { KineticHeading, Kicker, Reveal, MagneticButton, NexaMark } from "@/components/app-shell";
+import { PremiumIllustration, EmotionalIllustrations } from "@/components/ui/premium-illustration";
+import { Sparkles, Zap, Brain, TrendingUp, Shield, MessageCircle } from "lucide-react";
 
 export const Route = createFileRoute("/ai")({
   head: () => ({

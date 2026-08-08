@@ -1,12 +1,14 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { motion, AnimatePresence, useMotionValue, useTransform } from "motion/react";
+import { motion, AnimatePresence, useMotionValue, useTransform, animate } from "motion/react";
 import { useState, useEffect, useRef } from "react";
 import { NexaMark } from "@/components/app-shell";
+import { PremiumIllustration, EmotionalIllustrations, type IllustrationName } from "@/components/ui/premium-illustration";
+import { Sheet, SheetContent, SheetOverlay } from "@/components/ui/sheet";
 import {
   ChevronRight, MapPin, Star, Zap, Users, Coffee, Scissors,
   ShoppingBag, Store, Dumbbell, Utensils, Heart, Home as HomeIcon,
   Gift, Music, Camera, Wrench, Car, Shield, Check, ArrowRight,
-  Navigation, Sparkles, Play, Bell
+  Navigation, Sparkles, Play, Bell, X
 } from "lucide-react";
 
 export const Route = createFileRoute("/onboarding")({
@@ -117,13 +119,41 @@ function Onboarding() {
   const [interests, setInterests] = useState<string[]>([]);
   const [notificationsGranted, setNotificationsGranted] = useState(false);
   const [locationGranted, setLocationGranted] = useState(false);
+  const [showIllustrationSheet, setShowIllustrationSheet] = useState(false);
+  const [currentIllustration, setCurrentIllustration] = useState<IllustrationName>("welcome-hero");
 
-  const next = () => { setDirection(1); setStep((s) => Math.min(s + 1, TOTAL_STEPS)); };
-  const back = () => { setDirection(-1); setStep((s) => Math.max(s - 1, 1)); };
+  const next = () => { 
+    setDirection(1); 
+    if (step < TOTAL_STEPS) {
+      // Show illustration transition for key steps
+      if (step === 1 || step === 2 || step === 3) {
+        const nextIllustration: Record<number, IllustrationName> = {
+          1: "role-selection",
+          2: "mobile",
+          3: "interests",
+        };
+        setCurrentIllustration(nextIllustration[step]);
+        setShowIllustrationSheet(true);
+      } else {
+        setStep((s) => Math.min(s + 1, TOTAL_STEPS));
+      }
+    }
+  };
+  
+  const back = () => { 
+    setDirection(-1); 
+    setStep((s) => Math.max(s - 1, 1)); 
+  };
+  
   const toggleInterest = (id: string) =>
     setInterests((p) => p.includes(id) ? p.filter((i) => i !== id) : [...p, id]);
 
   const canProceed = step === 2 ? !!role : step === 4 ? interests.length >= 1 : true;
+
+  const handleSheetDismiss = () => {
+    setShowIllustrationSheet(false);
+    setTimeout(() => setStep((s) => Math.min(s + 1, TOTAL_STEPS)), 300);
+  };
 
   const slideVariants = {
     enter: (dir: number) => ({ x: dir > 0 ? "100%" : "-100%", opacity: 0 }),
@@ -142,6 +172,101 @@ function Onboarding() {
         <AnimatedOrb x="40%" y="-10%" size={300} color="oklch(0.6 0.2 200 / 0.12)" duration={9} />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,oklch(0.55_0.2_280/0.08)_0%,transparent_60%)]" />
       </div>
+
+      {/* ── ILLUSTRATION TRANSITION SHEET ── */}
+      <AnimatePresence>
+        {showIllustrationSheet && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100]"
+          >
+            <Sheet open={true} onOpenChange={(open) => !open && handleSheetDismiss()}>
+              <SheetContent 
+                side="bottom" 
+                variant="illustrated"
+                illustration={currentIllustration}
+                dragToExpand={true}
+                className="h-[85vh] rounded-t-[2.5rem]"
+              >
+                <div className="relative h-full flex flex-col items-center justify-center px-8 pb-12">
+                  {/* Large centered illustration */}
+                  <motion.div
+                    initial={{ scale: 0.8, opacity: 0, y: 40 }}
+                    animate={{ scale: 1, opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                    className="mb-8"
+                  >
+                    <PremiumIllustration 
+                      name={currentIllustration} 
+                      size="xl" 
+                      animate={true}
+                      className="shadow-[0_30px_80px_rgba(0,0,0,0.5)] w-72 h-72"
+                    />
+                  </motion.div>
+
+                  {/* Dynamic content based on current illustration */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.4, duration: 0.6 }}
+                    className="text-center max-w-sm"
+                  >
+                    {currentIllustration === "role-selection" && (
+                      <>
+                        <h3 className="font-display text-3xl font-bold mb-3">Choose Your Path</h3>
+                        <p className="text-white/60 text-base leading-relaxed">
+                          Are you here to discover amazing local businesses or grow your own?
+                        </p>
+                      </>
+                    )}
+                    {currentIllustration === "mobile" && (
+                      <>
+                        <h3 className="font-display text-3xl font-bold mb-3">Your Neighborhood Awaits</h3>
+                        <p className="text-white/60 text-base leading-relaxed">
+                          Let's find the best spots within walking distance of you.
+                        </p>
+                      </>
+                    )}
+                    {currentIllustration === "interests" && (
+                      <>
+                        <h3 className="font-display text-3xl font-bold mb-3">What Moves You?</h3>
+                        <p className="text-white/60 text-base leading-relaxed">
+                          Select your passions and we'll curate experiences just for you.
+                        </p>
+                      </>
+                    )}
+                  </motion.div>
+
+                  {/* Continue button */}
+                  <motion.button
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.6, duration: 0.5 }}
+                    whileTap={{ scale: 0.96 }}
+                    onClick={handleSheetDismiss}
+                    className="mt-10 h-14 bg-primary text-white rounded-2xl font-semibold text-base flex items-center justify-center gap-2 shadow-[0_8px_30px_rgba(var(--primary-rgb),0.35)] min-w-[200px]"
+                  >
+                    Continue
+                    <ChevronRight size={18} strokeWidth={2.5} />
+                  </motion.button>
+
+                  {/* Drag hint */}
+                  <motion.p
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.8 }}
+                    className="absolute bottom-6 text-white/30 text-xs uppercase tracking-widest"
+                  >
+                    Drag to explore
+                  </motion.p>
+                </div>
+              </SheetContent>
+            </Sheet>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* ── CONTENT ── */}
       <div className="relative z-10 flex flex-col flex-1 max-w-lg mx-auto w-full px-6 pt-16 pb-10">
@@ -170,29 +295,15 @@ function Onboarding() {
             {step === 1 && (
               <motion.div key="s1" custom={direction} variants={slideVariants} initial="enter" animate="center" exit="exit" transition={transition} className="flex flex-col flex-1">
                 
-                {/* Hero visual */}
-                <div className="relative mb-10 flex justify-center">
-                  <motion.div
-                    initial={{ scale: 0.5, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    transition={{ delay: 0.2, type: "spring", stiffness: 200, damping: 20 }}
-                    className="relative"
-                  >
-                    {/* Pulsing rings */}
-                    {[1, 2, 3].map((r) => (
-                      <motion.div
-                        key={r}
-                        className="absolute rounded-full border border-primary/20"
-                        style={{ inset: -(r * 20) }}
-                        animate={{ scale: [1, 1.04, 1], opacity: [0.4, 0.15, 0.4] }}
-                        transition={{ duration: 3 + r, repeat: Infinity, ease: "easeInOut", delay: r * 0.5 }}
-                      />
-                    ))}
-                    
-                    <div className="w-28 h-28 bg-primary/15 rounded-full flex items-center justify-center border border-primary/30 backdrop-blur-xl">
-                      <NexaMark size={52} />
-                    </div>
-                  </motion.div>
+                {/* Premium illustration hero */}
+                <div className="relative mb-8 flex justify-center">
+                  <PremiumIllustration 
+                    name="welcome-hero" 
+                    size="xl" 
+                    animate={true}
+                    alt="Welcome to Nexa - Your local world unlocked"
+                    className="shadow-[0_20px_60px_rgba(0,0,0,0.4)]"
+                  />
                 </div>
 
                 <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}>
@@ -227,7 +338,18 @@ function Onboarding() {
             {/* ── STEP 2: ROLE ── */}
             {step === 2 && (
               <motion.div key="s2" custom={direction} variants={slideVariants} initial="enter" animate="center" exit="exit" transition={transition} className="flex flex-col flex-1">
-                <div className="mb-8">
+                {/* Premium illustration header */}
+                <div className="relative mb-6 flex justify-center">
+                  <PremiumIllustration 
+                    name="role-selection" 
+                    size="lg" 
+                    animate={true}
+                    alt="Choose your path on Nexa"
+                    className="shadow-[0_16px_40px_rgba(0,0,0,0.3)]"
+                  />
+                </div>
+                
+                <div className="mb-6">
                   <span className="text-xs uppercase tracking-[0.2em] text-white/40 font-medium">Step 2 of {TOTAL_STEPS}</span>
                   <h2 className="font-display text-4xl font-bold tracking-tight mt-2 leading-tight">What brings<br />you here?</h2>
                   <p className="text-white/50 mt-2">We'll personalize everything for you.</p>
@@ -272,7 +394,18 @@ function Onboarding() {
             {/* ── STEP 3: LOCATION ── */}
             {step === 3 && (
               <motion.div key="s3" custom={direction} variants={slideVariants} initial="enter" animate="center" exit="exit" transition={transition} className="flex flex-col flex-1">
-                <div className="mb-8">
+                {/* Premium illustration header */}
+                <div className="relative mb-6 flex justify-center">
+                  <PremiumIllustration 
+                    name="location" 
+                    size="lg" 
+                    animate={true}
+                    alt="Discover your neighborhood"
+                    className="shadow-[0_16px_40px_rgba(0,0,0,0.3)]"
+                  />
+                </div>
+
+                <div className="mb-6">
                   <span className="text-xs uppercase tracking-[0.2em] text-white/40 font-medium">Step 3 of {TOTAL_STEPS}</span>
                   <h2 className="font-display text-4xl font-bold tracking-tight mt-2 leading-tight">Where are<br />you based?</h2>
                   <p className="text-white/50 mt-2">Discover businesses within walking distance.</p>
@@ -338,6 +471,17 @@ function Onboarding() {
             {/* ── STEP 4: INTERESTS ── */}
             {step === 4 && (
               <motion.div key="s4" custom={direction} variants={slideVariants} initial="enter" animate="center" exit="exit" transition={transition} className="flex flex-col flex-1">
+                {/* Premium illustration header */}
+                <div className="relative mb-5 flex justify-center">
+                  <PremiumIllustration 
+                    name="interests" 
+                    size="md" 
+                    animate={true}
+                    alt="Choose what you love"
+                    className="shadow-[0_16px_40px_rgba(0,0,0,0.3)]"
+                  />
+                </div>
+
                 <div className="mb-6">
                   <span className="text-xs uppercase tracking-[0.2em] text-white/40 font-medium">Step 4 of {TOTAL_STEPS}</span>
                   <h2 className="font-display text-4xl font-bold tracking-tight mt-2 leading-tight">What do<br />you love?</h2>
@@ -387,27 +531,16 @@ function Onboarding() {
             {step === 5 && (
               <motion.div key="s5" custom={direction} variants={slideVariants} initial="enter" animate="center" exit="exit" transition={transition} className="flex flex-col flex-1 items-center justify-center text-center">
                 
-                {/* Success pulse animation */}
-                <motion.div
-                  initial={{ scale: 0, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  transition={{ type: "spring", stiffness: 200, damping: 15, delay: 0.1 }}
-                  className="relative mb-10"
-                >
-                  {[1, 2].map((r) => (
-                    <motion.div
-                      key={r}
-                      className="absolute rounded-full border border-primary/25"
-                      style={{ inset: -(r * 24) }}
-                      animate={{ scale: [1, 1.06, 1], opacity: [0.5, 0.15, 0.5] }}
-                      transition={{ duration: 2.5 + r, repeat: Infinity, ease: "easeInOut" }}
-                    />
-                  ))}
-                  <div className="w-28 h-28 bg-primary/20 rounded-full flex items-center justify-center border border-primary/40">
-                    <motion.div animate={{ rotate: 360 }} transition={{ duration: 12, repeat: Infinity, ease: "linear" }} className="absolute inset-2 rounded-full border-2 border-dashed border-primary/30" />
-                    <NexaMark size={52} />
-                  </div>
-                </motion.div>
+                {/* Premium success illustration */}
+                <div className="relative mb-8">
+                  <PremiumIllustration 
+                    name="success" 
+                    size="xl" 
+                    animate={true}
+                    alt="You're all set!"
+                    className="shadow-[0_20px_60px_rgba(0,0,0,0.4)]"
+                  />
+                </div>
 
                 <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}>
                   <h2 className="font-display text-5xl font-bold tracking-tight mb-3">You're in.</h2>
