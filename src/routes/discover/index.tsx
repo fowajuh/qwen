@@ -1,8 +1,9 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { motion, AnimatePresence } from "motion/react";
 import { useState, useRef } from "react";
-import { Search, Bell, MapPin, Loader2 } from "lucide-react";
+import { Search, Bell, MapPin, Loader2, Sparkles } from "lucide-react";
 import { useScoutData, formatDistance } from "@/hooks/use-scout-data";
+import { PremiumIllustration, EmotionalIllustrations } from "@/components/ui/premium-illustration";
 
 export const Route = createFileRoute("/discover/")({
   head: () => ({
@@ -229,17 +230,75 @@ function DiscoverPage() {
       </div>
 
       {isLoading && (
-        <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/60 backdrop-blur-sm">
-          <Loader2 className="w-12 h-12 text-white animate-spin mb-4" />
-          <p className="text-white font-medium">Discovering nearby gems...</p>
+        <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-gradient-to-br from-indigo-900/95 via-purple-900/95 to-black/95 backdrop-blur-xl">
+          <motion.div
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            className="mb-6"
+          >
+            <PremiumIllustration 
+              name="consumer-journey" 
+              size="xl" 
+              animate={true}
+              alt="Discovering amazing places"
+              className="shadow-[0_20px_60px_rgba(99,102,241,0.3)]"
+            />
+          </motion.div>
+          <Loader2 className="w-10 h-10 text-white/80 animate-spin mb-4" />
+          <motion.p 
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="text-white font-semibold text-lg"
+          >
+            Discovering nearby gems...
+          </motion.p>
         </div>
       )}
 
       {error && !hasValidLocation && (
-        <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/60 backdrop-blur-sm p-6 text-center">
-          <MapPin className="w-16 h-16 text-white/60 mb-4" />
-          <p className="text-lg font-medium text-white mb-2">Location Access Needed</p>
-          <p className="text-sm text-white/60 mb-4">Enable location to discover nearby businesses</p>
+        <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-gradient-to-br from-indigo-900/95 via-purple-900/95 to-black/95 backdrop-blur-xl p-6 text-center">
+          <motion.div
+            initial={{ scale: 0.8, opacity: 0, rotate: -10 }}
+            animate={{ scale: 1, opacity: 1, rotate: 0 }}
+            transition={{ type: "spring", stiffness: 200, damping: 15 }}
+            className="mb-6"
+          >
+            <PremiumIllustration 
+              name="location" 
+              size="xl" 
+              animate={true}
+              alt="Enable location access"
+              className="shadow-[0_20px_60px_rgba(99,102,241,0.3)]"
+            />
+          </motion.div>
+          <motion.p 
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="text-xl font-bold text-white mb-2"
+          >
+            Location Access Needed
+          </motion.p>
+          <motion.p 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3 }}
+            className="text-sm text-white/70 mb-6 max-w-xs"
+          >
+            Enable location to discover amazing businesses and experiences near you
+          </motion.p>
+          <motion.button
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={() => window.location.reload()}
+            className="px-8 py-3 bg-white text-indigo-900 rounded-full font-bold text-sm shadow-lg hover:shadow-xl transition-all"
+          >
+            Enable Location
+          </motion.button>
         </div>
       )}
 
@@ -255,13 +314,27 @@ function DiscoverPage() {
             {filteredPins.length ? (
               <MasonryFeed pins={filteredPins} />
             ) : !isLoading ? (
-              <div className="flex flex-col items-center justify-center py-24 px-8 text-center">
-                <div className="w-16 h-16 rounded-full bg-surface flex items-center justify-center mb-4">
-                  <Search className="w-7 h-7 text-muted-foreground" />
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4 }}
+                className="flex flex-col items-center justify-center py-24 px-8 text-center"
+              >
+                <div className="mb-6">
+                  <PremiumIllustration 
+                    name="interests" 
+                    size="lg" 
+                    animate={true}
+                    alt="No results found"
+                    className="shadow-[0_20px_60px_rgba(99,102,241,0.2)]"
+                  />
                 </div>
-                <p className="font-bold text-[15px]">Nothing here yet</p>
-                <p className="text-[13px] text-muted-foreground mt-1">Try another category or check back soon.</p>
-              </div>
+                <div className="flex items-center gap-2 mb-2">
+                  <Sparkles className="w-5 h-5 text-indigo-400" />
+                  <p className="font-bold text-[15px] text-foreground">Nothing here yet</p>
+                </div>
+                <p className="text-[13px] text-muted-foreground mt-1">Try another category or check back soon for new discoveries.</p>
+              </motion.div>
             ) : null}
           </motion.div>
         </AnimatePresence>
