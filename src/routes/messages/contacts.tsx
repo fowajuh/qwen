@@ -1,20 +1,31 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { Search, ChevronLeft, UserPlus, Phone, MessageSquare, Video } from "lucide-react";
+import { useState } from "react";
+import { Search, ChevronLeft, UserPlus, Phone, MessageSquare, Building2, MapPin, Star } from "lucide-react";
+import { useContacts, useContactSearch } from "../../hooks/use-messages";
+import { useGeolocation } from "../../hooks/use-geolocation";
 
 export const Route = createFileRoute("/messages/contacts")({
   component: ContactsPage,
 });
 
-/* ─── DATA ─── */
-const CONTACTS = [
-  { id: "c1", name: "Elisha St. Denis", initials: "ES", gradient: "from-teal-400 to-cyan-500", phone: "+1 (555) 123-4567" },
-  { id: "c2", name: "Graham McBride", initials: "GM", gradient: "from-blue-500 to-indigo-600", phone: "+1 (555) 987-6543" },
-  { id: "c3", name: "Puthachad Kuthong", initials: "PK", gradient: "from-orange-400 to-red-500", phone: "+1 (555) 246-8101" },
-  { id: "c4", name: "Simla Uner", initials: "SU", gradient: "from-cyan-400 to-blue-500", phone: "+1 (555) 135-7911" },
-];
-
 function ContactsPage() {
   const navigate = useNavigate();
+  const { position } = useGeolocation();
+  const [searchQuery, setSearchQuery] = useState("");
+  
+  // Fetch contacts from backend (includes businesses from scouting system)
+  const { data: contacts, isLoading, error } = useContacts(
+    position ? { 
+      lat: position.coords.latitude, 
+      lng: position.coords.longitude, 
+      radius: 10 
+    } : undefined
+  );
+  
+  // Also enable search
+  const { data: searchResults } = useContactSearch(searchQuery);
+  
+  const displayContacts = searchQuery.trim() ? searchResults : contacts;
 
   return (
     <div className="flex flex-col h-full bg-background absolute inset-0 z-50 md:relative md:z-auto">
@@ -37,7 +48,9 @@ function ContactsPage() {
           <Search size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
           <input
             type="text"
-            placeholder="Search contacts..."
+            placeholder="Search contacts or nearby businesses..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full bg-foreground/5 border border-transparent rounded-xl pl-10 pr-4 py-2.5 text-sm outline-none focus:border-primary focus:bg-background transition-all"
           />
         </div>
@@ -45,33 +58,98 @@ function ContactsPage() {
 
       {/* List */}
       <div className="flex-1 overflow-y-auto px-4 pb-12">
-        <div className="space-y-1">
-          <div className="px-3 py-2 text-xs font-semibold uppercase tracking-widest text-muted-foreground">My Contacts</div>
-          {CONTACTS.sort((a, b) => a.name.localeCompare(b.name)).map((contact) => (
-            <div key={contact.id} className="flex items-center justify-between p-3 rounded-2xl hover:bg-foreground/5 transition-colors group cursor-pointer">
-              <div className="flex items-center gap-3">
-                <div className={`w-12 h-12 rounded-full bg-gradient-to-br ${contact.gradient} flex items-center justify-center text-white font-display text-base shadow-inner`}>
-                  {contact.initials}
-                </div>
-                <div>
-                  <h3 className="font-semibold text-base">{contact.name}</h3>
-                  <p className="text-xs text-muted-foreground">{contact.phone}</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                <Link to="/messages/chat/$id" params={{ id: contact.id }} className="w-9 h-9 rounded-full bg-background border border-border shadow-sm flex items-center justify-center text-primary hover:bg-foreground/5">
-                  <MessageSquare size={16} />
-                </Link>
-                <Link to="/messages/call/$id" params={{ id: contact.id }} className="w-9 h-9 rounded-full bg-background border border-border shadow-sm flex items-center justify-center text-primary hover:bg-foreground/5">
-                  <Phone size={16} />
-                </Link>
-                <Link to="/messages/call/$id" params={{ id: contact.id }} className="w-9 h-9 rounded-full bg-background border border-border shadow-sm flex items-center justify-center text-primary hover:bg-foreground/5">
-                  <Video size={16} />
-                </Link>
-              </div>
+        {isLoading && (
+          <div className="flex flex-col items-center justify-center py-12">
+            <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin mb-3" />
+            <p className="text-sm text-muted-foreground">Loading contacts...</p>
+          </div>
+        )}
+        
+        {error && (
+          <div className="text-center py-12">
+            <p className="text-red-500 text-sm mb-2">Failed to load contacts</p>
+            <button 
+              onClick={() => window.location.reload()}
+              className="text-xs text-primary underline"
+            >
+              Try again
+            </button>
+          </div>
+        )}
+        
+        {!isLoading && !error && (!displayContacts || displayContacts.length === 0) && (
+          <div className="text-center py-12">
+            <div className="w-16 h-16 bg-foreground/5 rounded-full flex items-center justify-center mx-auto mb-4">
+              <Building2 size={24} className="text-muted-foreground" />
             </div>
-          ))}
-        </div>
+            <p className="font-medium text-foreground mb-1">No contacts yet</p>
+            <p className="text-sm text-muted-foreground max-w-xs mx-auto">
+              {searchQuery 
+                ? "No results found. Try a different search term."
+                : "Nearby businesses from our scouting system will appear here once you enable location."}
+            </p>
+          </div>
+        )}
+        
+        {!isLoading && !error && displayContacts && displayContacts.length > 0 && (
+          <>
+            <div className="px-3 py-2 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+              {searchQuery ? "Search Results" : "Nearby Businesses & Contacts"}
+            </div>
+            {displayContacts.map((contact: any) => (
+              <div key={contact.id} className="flex items-center justify-between p-3 rounded-2xl hover:bg-foreground/5 transition-colors group cursor-pointer">
+                <div className="flex items-center gap-3">
+                  {contact.logo_url ? (
+                    <img 
+                      src={contact.logo_url} 
+                      alt={contact.name}
+                      className="w-12 h-12 rounded-full object-cover border border-border"
+                    />
+                  ) : (
+                    <div className={`w-12 h-12 rounded-full bg-gradient-to-br ${
+                      contact.business_id ? 'from-amber-400 to-orange-500' : 'from-blue-500 to-indigo-600'
+                    } flex items-center justify-center text-white font-display text-base shadow-inner`}>
+                      {contact.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase()}
+                    </div>
+                  )}
+                  <div>
+                    <h3 className="font-semibold text-base">{contact.name}</h3>
+                    <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                      {contact.business_id && (
+                        <>
+                          <Building2 size={10} />
+                          <span className="capitalize">{contact.category}</span>
+                        </>
+                      )}
+                      {contact.city && (
+                        <>
+                          <MapPin size={10} />
+                          <span>{contact.city}</span>
+                        </>
+                      )}
+                      {contact.rating > 0 && (
+                        <div className="flex items-center gap-0.5">
+                          <Star size={10} className="fill-amber-400 text-amber-400" />
+                          <span>{contact.rating.toFixed(1)}</span>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <Link to="/messages/chat/$id" params={{ id: contact.id }} className="w-9 h-9 rounded-full bg-background border border-border shadow-sm flex items-center justify-center text-primary hover:bg-foreground/5">
+                    <MessageSquare size={16} />
+                  </Link>
+                  {contact.phone && (
+                    <a href={`tel:${contact.phone}`} className="w-9 h-9 rounded-full bg-background border border-border shadow-sm flex items-center justify-center text-primary hover:bg-foreground/5">
+                      <Phone size={16} />
+                    </a>
+                  )}
+                </div>
+              </div>
+            ))}
+          </>
+        )}
       </div>
     </div>
   );

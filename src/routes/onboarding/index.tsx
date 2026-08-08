@@ -9,7 +9,7 @@ import {
   Navigation, Sparkles, Play, Bell
 } from "lucide-react";
 
-export const Route = createFileRoute("/onboarding")({
+export const Route = createFileRoute("/onboarding/")({
   head: () => ({
     meta: [
       { title: "Get Started — Nexa" },

@@ -5,8 +5,8 @@ import path from 'path';
 
 export default defineConfig({
   plugins: [
-    react(),
     TanStackRouterVite({ target: 'react', autoCodeSplitting: true }),
+    react(),
   ],
   resolve: {
     alias: {

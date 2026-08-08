@@ -3,8 +3,9 @@ import { motion, AnimatePresence } from "motion/react";
 import { useMemo, useState } from "react";
 import {
   Plus, Menu, ChevronDown, Grid3x3, Clapperboard, Repeat2, UserSquare2,
-  Play, Eye, Copy, Gem, Globe, ArrowDown, X, Check,
+  Play, Eye, Copy, Gem, Globe, ArrowDown, X, Check, Loader2,
 } from "lucide-react";
+import { useMyProfile, useFollowers, useFollowing, useToggleFollow } from "@/hooks/use-profile";
 
 export const Route = createFileRoute("/profile/")({
   head: () => ({
@@ -90,6 +91,10 @@ function Profile() {
   const [activeTab, setActiveTab] = useState<"posts" | "reels" | "reposts" | "tagged">("posts");
   const [accountSwitcherOpen, setAccountSwitcherOpen] = useState(false);
   const [bannerDismissed, setBannerDismissed] = useState(false);
+  
+  // Fetch real user profile from backend
+  const { data: profile, isLoading, error } = useMyProfile();
+  const toggleFollow = useToggleFollow();
 
   const visiblePosts = useMemo(() => {
     if (activeTab === "posts") return MY_POSTS;
@@ -103,6 +108,28 @@ function Profile() {
       return;
     }
     setActiveTab(tab);
+  };
+  
+  // Loading state
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center pt-safe">
+        <Loader2 className="w-8 h-8 text-foreground animate-spin" />
+      </div>
+    );
+  }
+  
+  // Error state - show fallback profile
+  const displayProfile = profile || {
+    username: "etoil.vd",
+    name: "ÉTOILE",
+    category: "Clothing (Brand)",
+    bio: ["Limited releases.", "Worldwide shipping"],
+    website: "Launching Soon",
+    avatar_url: null,
+    followers_count: 8,
+    following_count: 38,
+    posts_count: MY_POSTS.length,
   };
 
   return (
@@ -118,7 +145,7 @@ function Profile() {
           onClick={() => setAccountSwitcherOpen(true)}
           className="flex items-center gap-1 px-2 py-1 rounded-lg hover:bg-surface transition-colors"
         >
-          <span className="text-[17px] font-bold text-foreground">{MY_ACCOUNT.username}</span>
+          <span className="text-[17px] font-bold text-foreground">{displayProfile.username}</span>
           <ChevronDown className="w-4 h-4 text-foreground" />
         </button>
 
@@ -136,7 +163,11 @@ function Profile() {
       <div className="px-4 pt-2">
         <div className="flex items-start justify-between mb-4">
           <div className="relative">
-            <StarAvatar size={80} />
+            {displayProfile.avatar_url ? (
+              <img src={displayProfile.avatar_url} alt={displayProfile.name} className="w-20 h-20 rounded-full object-cover" />
+            ) : (
+              <StarAvatar size={80} />
+            )}
             <button onClick={() => navigate({ to: "/profile/edit" })} className="absolute bottom-0 right-0 w-6 h-6 bg-primary text-primary-foreground rounded-full flex items-center justify-center border-2 border-background">
               <Plus size={14} />
             </button>
@@ -144,15 +175,15 @@ function Profile() {
 
           <div className="flex flex-1 justify-around ml-4 text-center">
             <div className="flex flex-col items-center">
-              <span className="font-bold text-[17px]">{MY_ACCOUNT.posts}</span>
+              <span className="font-bold text-[17px]">{displayProfile.posts_count || MY_POSTS.length}</span>
               <span className="text-[13px] text-muted-foreground">posts</span>
             </div>
             <Link to="/profile/followers" className="flex flex-col items-center">
-              <span className="font-bold text-[17px]">{MY_ACCOUNT.followers}</span>
+              <span className="font-bold text-[17px]">{displayProfile.followers_count || 0}</span>
               <span className="text-[13px] text-muted-foreground">followers</span>
             </Link>
             <Link to="/profile/following" className="flex flex-col items-center">
-              <span className="font-bold text-[17px]">{MY_ACCOUNT.following}</span>
+              <span className="font-bold text-[17px]">{displayProfile.following_count || 0}</span>
               <span className="text-[13px] text-muted-foreground">following</span>
             </Link>
           </div>
@@ -160,20 +191,22 @@ function Profile() {
 
         <div className="mb-4">
           <div className="flex items-center gap-1.5">
-            <h2 className="font-bold text-[15px]">{MY_ACCOUNT.name}</h2>
-            <Gem className="w-3.5 h-3.5 text-foreground" fill="currentColor" />
+            <h2 className="font-bold text-[15px]">{displayProfile.name}</h2>
+            {displayProfile.is_verified && <Gem className="w-3.5 h-3.5 text-foreground" fill="currentColor" />}
           </div>
-          <p className="text-[14px] text-muted-foreground mt-0.5">{MY_ACCOUNT.category}</p>
+          <p className="text-[14px] text-muted-foreground mt-0.5">{displayProfile.category}</p>
           <div className="text-[14px] leading-snug mt-1.5">
-            {MY_ACCOUNT.bio.map((line, i) => (
+            {(Array.isArray(displayProfile.bio) ? displayProfile.bio : [displayProfile.bio]).map((line, i) => (
               <p key={i} className="flex items-center gap-1.5">
                 {line}
-                {i === MY_ACCOUNT.bio.length - 1 && <Globe className="w-3.5 h-3.5 text-muted-foreground" />}
+                {i === 0 && displayProfile.website && <Globe className="w-3.5 h-3.5 text-muted-foreground" />}
               </p>
             ))}
-            <p className="flex items-center gap-1 font-semibold mt-0.5">
-              {MY_ACCOUNT.link} <ArrowDown className="w-3.5 h-3.5" />
-            </p>
+            {displayProfile.website && (
+              <p className="flex items-center gap-1 font-semibold mt-0.5">
+                {displayProfile.website} <ArrowDown className="w-3.5 h-3.5" />
+              </p>
+            )}
           </div>
         </div>
 

@@ -9,151 +9,110 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as WalletRouteImport } from './routes/wallet'
-import { Route as TrustRouteImport } from './routes/trust'
-import { Route as ShareRouteImport } from './routes/share'
-import { Route as SearchRouteImport } from './routes/search'
-import { Route as SavedRouteImport } from './routes/saved'
-import { Route as PaymentsRouteImport } from './routes/payments'
-import { Route as OnboardingRouteImport } from './routes/onboarding'
-import { Route as NotificationsRouteImport } from './routes/notifications'
-import { Route as MembershipRouteImport } from './routes/membership'
-import { Route as MapRouteImport } from './routes/map'
-import { Route as ManifestoRouteImport } from './routes/manifesto'
-import { Route as DashboardRouteImport } from './routes/dashboard'
-import { Route as AiRouteImport } from './routes/ai'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as ProfileIndexRouteImport } from './routes/profile/index'
-import { Route as MessagesIndexRouteImport } from './routes/messages/index'
-import { Route as HousingIndexRouteImport } from './routes/housing/index'
-import { Route as HomeIndexRouteImport } from './routes/home/index'
-import { Route as DiscoverIndexRouteImport } from './routes/discover/index'
-import { Route as SearchResultsRouteImport } from './routes/search.results'
-import { Route as ProfileWalletRouteImport } from './routes/profile/wallet'
-import { Route as ProfileTaggedRouteImport } from './routes/profile/tagged'
-import { Route as ProfileSettingsRouteImport } from './routes/profile/settings'
-import { Route as ProfileSavedRouteImport } from './routes/profile/saved'
-import { Route as ProfileQrcodeRouteImport } from './routes/profile/qrcode'
-import { Route as ProfileOrdersRouteImport } from './routes/profile/orders'
-import { Route as ProfileHistoryRouteImport } from './routes/profile/history'
-import { Route as ProfileFollowingRouteImport } from './routes/profile/following'
-import { Route as ProfileFollowersRouteImport } from './routes/profile/followers'
-import { Route as ProfileEditRouteImport } from './routes/profile/edit'
-import { Route as ProfileBookingsRouteImport } from './routes/profile/bookings'
-import { Route as ProfileAnalyticsRouteImport } from './routes/profile/analytics'
-import { Route as ProfileActivityRouteImport } from './routes/profile/activity'
-import { Route as MessagesSettingsRouteImport } from './routes/messages/settings'
-import { Route as MessagesSearchRouteImport } from './routes/messages/search'
-import { Route as MessagesRequestsRouteImport } from './routes/messages/requests'
-import { Route as MessagesNewRouteImport } from './routes/messages/new'
-import { Route as MessagesContactsRouteImport } from './routes/messages/contacts'
-import { Route as MembershipUpgradeRouteImport } from './routes/membership.upgrade'
-import { Route as MembershipBillingRouteImport } from './routes/membership.billing'
-import { Route as HousingWishlistRouteImport } from './routes/housing/wishlist'
-import { Route as HousingTripsRouteImport } from './routes/housing/trips'
-import { Route as HousingSearchRouteImport } from './routes/housing/search'
-import { Route as HousingReservationRouteImport } from './routes/housing/reservation'
-import { Route as HousingMapRouteImport } from './routes/housing/map'
-import { Route as HousingHostRouteImport } from './routes/housing/host'
-import { Route as HousingFiltersRouteImport } from './routes/housing/filters'
-import { Route as HousingExperiencesRouteImport } from './routes/housing/experiences'
-import { Route as HousingConfirmationRouteImport } from './routes/housing/confirmation'
-import { Route as HousingBookingRouteImport } from './routes/housing/booking'
-import { Route as HousingIdRouteImport } from './routes/housing/$id'
-import { Route as HomeSearchRouteImport } from './routes/home/search'
-import { Route as HomeLiveRouteImport } from './routes/home/live'
-import { Route as HomeFollowingRouteImport } from './routes/home/following'
-import { Route as HomeActivityRouteImport } from './routes/home/activity'
-import { Route as DiscoverSearchRouteImport } from './routes/discover/search'
-import { Route as DiscoverFollowingRouteImport } from './routes/discover/following'
-import { Route as DiscoverCategoryRouteImport } from './routes/discover/category'
-import { Route as DashboardSettingsRouteImport } from './routes/dashboard.settings'
-import { Route as CreatorIdRouteImport } from './routes/creator.$id'
-import { Route as BusinessSlugRouteImport } from './routes/business.$slug'
-import { Route as AiStudioRouteImport } from './routes/ai.studio'
-import { Route as AiInsightsRouteImport } from './routes/ai.insights'
+import { Route as AiRouteImport } from './routes/ai'
+import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as ManifestoRouteImport } from './routes/manifesto'
+import { Route as MapRouteImport } from './routes/map'
+import { Route as MembershipRouteImport } from './routes/membership'
+import { Route as NotificationsRouteImport } from './routes/notifications'
+import { Route as OnboardingRouteImport } from './routes/onboarding'
+import { Route as PaymentsRouteImport } from './routes/payments'
+import { Route as SavedRouteImport } from './routes/saved'
+import { Route as SearchRouteImport } from './routes/search'
+import { Route as ShareRouteImport } from './routes/share'
+import { Route as TrustRouteImport } from './routes/trust'
+import { Route as WalletRouteImport } from './routes/wallet'
 import { Route as AiCampaignsRouteImport } from './routes/ai.campaigns'
-import { Route as ProfileUserIdRouteImport } from './routes/profile/user.$id'
-import { Route as ProfileStoryIdRouteImport } from './routes/profile/story.$id'
-import { Route as ProfileReelsIdRouteImport } from './routes/profile/reels.$id'
-import { Route as ProfilePostIdRouteImport } from './routes/profile/post.$id'
-import { Route as MessagesMediaIdRouteImport } from './routes/messages/media.$id'
-import { Route as MessagesChatIdRouteImport } from './routes/messages/chat.$id'
-import { Route as MessagesCallIdRouteImport } from './routes/messages/call.$id'
-import { Route as HousingListingIdRouteImport } from './routes/housing/listing.$id'
-import { Route as HousingDatesIdRouteImport } from './routes/housing/dates.$id'
-import { Route as HousingBookIdRouteImport } from './routes/housing/book.$id'
-import { Route as HomeSoundIdRouteImport } from './routes/home/sound.$id'
-import { Route as HomeShareIdRouteImport } from './routes/home/share.$id'
-import { Route as HomeHashtagIdRouteImport } from './routes/home/hashtag.$id'
-import { Route as HomeCommentsIdRouteImport } from './routes/home/comments.$id'
-import { Route as DiscoverShopIdRouteImport } from './routes/discover/shop.$id'
-import { Route as DiscoverSaveModalIdRouteImport } from './routes/discover/save-modal.$id'
-import { Route as DiscoverRelatedIdRouteImport } from './routes/discover/related.$id'
-import { Route as DiscoverPinIdRouteImport } from './routes/discover/pin.$id'
-import { Route as DiscoverBoardIdRouteImport } from './routes/discover/board.$id'
+import { Route as AiInsightsRouteImport } from './routes/ai.insights'
+import { Route as AiStudioRouteImport } from './routes/ai.studio'
+import { Route as BusinessSlugRouteImport } from './routes/business.$slug'
+import { Route as CreatorIdRouteImport } from './routes/creator.$id'
+import { Route as DashboardSettingsRouteImport } from './routes/dashboard.settings'
+import { Route as DiscoverIndexRouteImport } from './routes/discover/index'
+import { Route as DiscoverCategoryRouteImport } from './routes/discover/category'
+import { Route as DiscoverFollowingRouteImport } from './routes/discover/following'
+import { Route as DiscoverSearchRouteImport } from './routes/discover/search'
+import { Route as HomeIndexRouteImport } from './routes/home/index'
+import { Route as HomeActivityRouteImport } from './routes/home/activity'
+import { Route as HomeBookedRouteImport } from './routes/home/booked'
+import { Route as HomeFollowingRouteImport } from './routes/home/following'
+import { Route as HomeLiveRouteImport } from './routes/home/live'
+import { Route as HomeSearchRouteImport } from './routes/home/search'
+import { Route as HousingIndexRouteImport } from './routes/housing/index'
+import { Route as HousingIdRouteImport } from './routes/housing/$id'
+import { Route as HousingBookingRouteImport } from './routes/housing/booking'
+import { Route as HousingConfirmationRouteImport } from './routes/housing/confirmation'
+import { Route as HousingExperiencesRouteImport } from './routes/housing/experiences'
+import { Route as HousingHelpRouteImport } from './routes/housing/help'
+import { Route as HousingHostRouteImport } from './routes/housing/host'
+import { Route as HousingInviteRouteImport } from './routes/housing/invite'
+import { Route as HousingMapRouteImport } from './routes/housing/map'
+import { Route as HousingReservationRouteImport } from './routes/housing/reservation'
+import { Route as HousingSafetyRouteImport } from './routes/housing/safety'
+import { Route as HousingSearchRouteImport } from './routes/housing/search'
+import { Route as HousingTripsRouteImport } from './routes/housing/trips'
+import { Route as HousingWishlistRouteImport } from './routes/housing/wishlist'
+import { Route as MembershipBillingRouteImport } from './routes/membership.billing'
+import { Route as MembershipUpgradeRouteImport } from './routes/membership.upgrade'
+import { Route as MessagesIndexRouteImport } from './routes/messages/index'
+import { Route as MessagesContactsRouteImport } from './routes/messages/contacts'
+import { Route as MessagesNewRouteImport } from './routes/messages/new'
+import { Route as MessagesRequestsRouteImport } from './routes/messages/requests'
+import { Route as MessagesSearchRouteImport } from './routes/messages/search'
+import { Route as MessagesSettingsRouteImport } from './routes/messages/settings'
+import { Route as OnboardingIndexRouteImport } from './routes/onboarding/index'
+import { Route as ProfileIndexRouteImport } from './routes/profile/index'
+import { Route as ProfileActivityRouteImport } from './routes/profile/activity'
+import { Route as ProfileAnalyticsRouteImport } from './routes/profile/analytics'
+import { Route as ProfileBookingsRouteImport } from './routes/profile/bookings'
+import { Route as ProfileEditRouteImport } from './routes/profile/edit'
+import { Route as ProfileFollowersRouteImport } from './routes/profile/followers'
+import { Route as ProfileFollowingRouteImport } from './routes/profile/following'
+import { Route as ProfileHistoryRouteImport } from './routes/profile/history'
+import { Route as ProfileOrdersRouteImport } from './routes/profile/orders'
+import { Route as ProfileQrcodeRouteImport } from './routes/profile/qrcode'
+import { Route as ProfileSavedRouteImport } from './routes/profile/saved'
+import { Route as ProfileSettingsRouteImport } from './routes/profile/settings'
+import { Route as ProfileTaggedRouteImport } from './routes/profile/tagged'
+import { Route as ProfileWalletRouteImport } from './routes/profile/wallet'
+import { Route as SearchResultsRouteImport } from './routes/search.results'
 import { Route as CreatorVideoIdRouteImport } from './routes/creator.video.$id'
-import { Route as HousingListingIdReviewsRouteImport } from './routes/housing/listing.$id.reviews'
+import { Route as DiscoverBoardIdRouteImport } from './routes/discover/board.$id'
+import { Route as DiscoverPinIdRouteImport } from './routes/discover/pin.$id'
+import { Route as DiscoverRelatedIdRouteImport } from './routes/discover/related.$id'
+import { Route as DiscoverSaveModalIdRouteImport } from './routes/discover/save-modal.$id'
+import { Route as DiscoverShopIdRouteImport } from './routes/discover/shop.$id'
+import { Route as HomeCommentsIdRouteImport } from './routes/home/comments.$id'
+import { Route as HomeHashtagIdRouteImport } from './routes/home/hashtag.$id'
+import { Route as HomeShareIdRouteImport } from './routes/home/share.$id'
+import { Route as HomeSoundIdRouteImport } from './routes/home/sound.$id'
+import { Route as HousingBookIdRouteImport } from './routes/housing/book.$id'
+import { Route as HousingCheckoutIdRouteImport } from './routes/housing/checkout.$id'
+import { Route as HousingDatesIdRouteImport } from './routes/housing/dates.$id'
+import { Route as HousingHostAnalyticsRouteImport } from './routes/housing/host.analytics'
+import { Route as HousingHostCalendarRouteImport } from './routes/housing/host.calendar'
+import { Route as HousingHostDashboardRouteImport } from './routes/housing/host.dashboard'
+import { Route as HousingHostListingsRouteImport } from './routes/housing/host.listings'
+import { Route as HousingHostPayoutsRouteImport } from './routes/housing/host.payouts'
+import { Route as HousingHostReservationsRouteImport } from './routes/housing/host.reservations'
+import { Route as HousingListingIdRouteImport } from './routes/housing/listing.$id'
+import { Route as MessagesCallIdRouteImport } from './routes/messages/call.$id'
+import { Route as MessagesChatIdRouteImport } from './routes/messages/chat.$id'
+import { Route as MessagesMediaIdRouteImport } from './routes/messages/media.$id'
+import { Route as ProfilePostIdRouteImport } from './routes/profile/post.$id'
+import { Route as ProfileReelsIdRouteImport } from './routes/profile/reels.$id'
+import { Route as ProfileStoryIdRouteImport } from './routes/profile/story.$id'
+import { Route as ProfileUserIdRouteImport } from './routes/profile/user.$id'
+import { Route as HousingCheckoutIdSuccessRouteImport } from './routes/housing/checkout.$id.success'
 import { Route as HousingListingIdPhotosRouteImport } from './routes/housing/listing.$id.photos'
+import { Route as HousingListingIdReviewsRouteImport } from './routes/housing/listing.$id.reviews'
+import { Route as HousingReviewsWriteBookingIdRouteImport } from './routes/housing/reviews.write.$bookingId'
+import { Route as HousingHostListingsIdEditRouteImport } from './routes/housing/host.listings.$id.edit'
 
-const WalletRoute = WalletRouteImport.update({
-  id: '/wallet',
-  path: '/wallet',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const TrustRoute = TrustRouteImport.update({
-  id: '/trust',
-  path: '/trust',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ShareRoute = ShareRouteImport.update({
-  id: '/share',
-  path: '/share',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SearchRoute = SearchRouteImport.update({
-  id: '/search',
-  path: '/search',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SavedRoute = SavedRouteImport.update({
-  id: '/saved',
-  path: '/saved',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PaymentsRoute = PaymentsRouteImport.update({
-  id: '/payments',
-  path: '/payments',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const OnboardingRoute = OnboardingRouteImport.update({
-  id: '/onboarding',
-  path: '/onboarding',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const NotificationsRoute = NotificationsRouteImport.update({
-  id: '/notifications',
-  path: '/notifications',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const MembershipRoute = MembershipRouteImport.update({
-  id: '/membership',
-  path: '/membership',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const MapRoute = MapRouteImport.update({
-  id: '/map',
-  path: '/map',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ManifestoRoute = ManifestoRouteImport.update({
-  id: '/manifesto',
-  path: '/manifesto',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DashboardRoute = DashboardRouteImport.update({
-  id: '/dashboard',
-  path: '/dashboard',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AiRoute = AiRouteImport.update({
@@ -161,249 +120,69 @@ const AiRoute = AiRouteImport.update({
   path: '/ai',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ProfileIndexRoute = ProfileIndexRouteImport.update({
-  id: '/profile/',
-  path: '/profile/',
+const ManifestoRoute = ManifestoRouteImport.update({
+  id: '/manifesto',
+  path: '/manifesto',
   getParentRoute: () => rootRouteImport,
 } as any)
-const MessagesIndexRoute = MessagesIndexRouteImport.update({
-  id: '/messages/',
-  path: '/messages/',
+const MapRoute = MapRouteImport.update({
+  id: '/map',
+  path: '/map',
   getParentRoute: () => rootRouteImport,
 } as any)
-const HousingIndexRoute = HousingIndexRouteImport.update({
-  id: '/housing/',
-  path: '/housing/',
+const MembershipRoute = MembershipRouteImport.update({
+  id: '/membership',
+  path: '/membership',
   getParentRoute: () => rootRouteImport,
 } as any)
-const HomeIndexRoute = HomeIndexRouteImport.update({
-  id: '/home/',
-  path: '/home/',
+const NotificationsRoute = NotificationsRouteImport.update({
+  id: '/notifications',
+  path: '/notifications',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DiscoverIndexRoute = DiscoverIndexRouteImport.update({
-  id: '/discover/',
-  path: '/discover/',
+const OnboardingRoute = OnboardingRouteImport.update({
+  id: '/onboarding',
+  path: '/onboarding',
   getParentRoute: () => rootRouteImport,
 } as any)
-const SearchResultsRoute = SearchResultsRouteImport.update({
-  id: '/results',
-  path: '/results',
-  getParentRoute: () => SearchRoute,
-} as any)
-const ProfileWalletRoute = ProfileWalletRouteImport.update({
-  id: '/profile/wallet',
-  path: '/profile/wallet',
+const PaymentsRoute = PaymentsRouteImport.update({
+  id: '/payments',
+  path: '/payments',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ProfileTaggedRoute = ProfileTaggedRouteImport.update({
-  id: '/profile/tagged',
-  path: '/profile/tagged',
+const SavedRoute = SavedRouteImport.update({
+  id: '/saved',
+  path: '/saved',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ProfileSettingsRoute = ProfileSettingsRouteImport.update({
-  id: '/profile/settings',
-  path: '/profile/settings',
+const SearchRoute = SearchRouteImport.update({
+  id: '/search',
+  path: '/search',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ProfileSavedRoute = ProfileSavedRouteImport.update({
-  id: '/profile/saved',
-  path: '/profile/saved',
+const ShareRoute = ShareRouteImport.update({
+  id: '/share',
+  path: '/share',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ProfileQrcodeRoute = ProfileQrcodeRouteImport.update({
-  id: '/profile/qrcode',
-  path: '/profile/qrcode',
+const TrustRoute = TrustRouteImport.update({
+  id: '/trust',
+  path: '/trust',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ProfileOrdersRoute = ProfileOrdersRouteImport.update({
-  id: '/profile/orders',
-  path: '/profile/orders',
+const WalletRoute = WalletRouteImport.update({
+  id: '/wallet',
+  path: '/wallet',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ProfileHistoryRoute = ProfileHistoryRouteImport.update({
-  id: '/profile/history',
-  path: '/profile/history',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ProfileFollowingRoute = ProfileFollowingRouteImport.update({
-  id: '/profile/following',
-  path: '/profile/following',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ProfileFollowersRoute = ProfileFollowersRouteImport.update({
-  id: '/profile/followers',
-  path: '/profile/followers',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ProfileEditRoute = ProfileEditRouteImport.update({
-  id: '/profile/edit',
-  path: '/profile/edit',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ProfileBookingsRoute = ProfileBookingsRouteImport.update({
-  id: '/profile/bookings',
-  path: '/profile/bookings',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ProfileAnalyticsRoute = ProfileAnalyticsRouteImport.update({
-  id: '/profile/analytics',
-  path: '/profile/analytics',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ProfileActivityRoute = ProfileActivityRouteImport.update({
-  id: '/profile/activity',
-  path: '/profile/activity',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const MessagesSettingsRoute = MessagesSettingsRouteImport.update({
-  id: '/messages/settings',
-  path: '/messages/settings',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const MessagesSearchRoute = MessagesSearchRouteImport.update({
-  id: '/messages/search',
-  path: '/messages/search',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const MessagesRequestsRoute = MessagesRequestsRouteImport.update({
-  id: '/messages/requests',
-  path: '/messages/requests',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const MessagesNewRoute = MessagesNewRouteImport.update({
-  id: '/messages/new',
-  path: '/messages/new',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const MessagesContactsRoute = MessagesContactsRouteImport.update({
-  id: '/messages/contacts',
-  path: '/messages/contacts',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const MembershipUpgradeRoute = MembershipUpgradeRouteImport.update({
-  id: '/upgrade',
-  path: '/upgrade',
-  getParentRoute: () => MembershipRoute,
-} as any)
-const MembershipBillingRoute = MembershipBillingRouteImport.update({
-  id: '/billing',
-  path: '/billing',
-  getParentRoute: () => MembershipRoute,
-} as any)
-const HousingWishlistRoute = HousingWishlistRouteImport.update({
-  id: '/housing/wishlist',
-  path: '/housing/wishlist',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const HousingTripsRoute = HousingTripsRouteImport.update({
-  id: '/housing/trips',
-  path: '/housing/trips',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const HousingSearchRoute = HousingSearchRouteImport.update({
-  id: '/housing/search',
-  path: '/housing/search',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const HousingReservationRoute = HousingReservationRouteImport.update({
-  id: '/housing/reservation',
-  path: '/housing/reservation',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const HousingMapRoute = HousingMapRouteImport.update({
-  id: '/housing/map',
-  path: '/housing/map',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const HousingHostRoute = HousingHostRouteImport.update({
-  id: '/housing/host',
-  path: '/housing/host',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const HousingFiltersRoute = HousingFiltersRouteImport.update({
-  id: '/housing/filters',
-  path: '/housing/filters',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const HousingExperiencesRoute = HousingExperiencesRouteImport.update({
-  id: '/housing/experiences',
-  path: '/housing/experiences',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const HousingConfirmationRoute = HousingConfirmationRouteImport.update({
-  id: '/housing/confirmation',
-  path: '/housing/confirmation',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const HousingBookingRoute = HousingBookingRouteImport.update({
-  id: '/housing/booking',
-  path: '/housing/booking',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const HousingIdRoute = HousingIdRouteImport.update({
-  id: '/housing/$id',
-  path: '/housing/$id',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const HomeSearchRoute = HomeSearchRouteImport.update({
-  id: '/home/search',
-  path: '/home/search',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const HomeLiveRoute = HomeLiveRouteImport.update({
-  id: '/home/live',
-  path: '/home/live',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const HomeFollowingRoute = HomeFollowingRouteImport.update({
-  id: '/home/following',
-  path: '/home/following',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const HomeActivityRoute = HomeActivityRouteImport.update({
-  id: '/home/activity',
-  path: '/home/activity',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DiscoverSearchRoute = DiscoverSearchRouteImport.update({
-  id: '/discover/search',
-  path: '/discover/search',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DiscoverFollowingRoute = DiscoverFollowingRouteImport.update({
-  id: '/discover/following',
-  path: '/discover/following',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DiscoverCategoryRoute = DiscoverCategoryRouteImport.update({
-  id: '/discover/category',
-  path: '/discover/category',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DashboardSettingsRoute = DashboardSettingsRouteImport.update({
-  id: '/settings',
-  path: '/settings',
-  getParentRoute: () => DashboardRoute,
-} as any)
-const CreatorIdRoute = CreatorIdRouteImport.update({
-  id: '/creator/$id',
-  path: '/creator/$id',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const BusinessSlugRoute = BusinessSlugRouteImport.update({
-  id: '/business/$slug',
-  path: '/business/$slug',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AiStudioRoute = AiStudioRouteImport.update({
-  id: '/studio',
-  path: '/studio',
+const AiCampaignsRoute = AiCampaignsRouteImport.update({
+  id: '/campaigns',
+  path: '/campaigns',
   getParentRoute: () => AiRoute,
 } as any)
 const AiInsightsRoute = AiInsightsRouteImport.update({
@@ -411,99 +190,269 @@ const AiInsightsRoute = AiInsightsRouteImport.update({
   path: '/insights',
   getParentRoute: () => AiRoute,
 } as any)
-const AiCampaignsRoute = AiCampaignsRouteImport.update({
-  id: '/campaigns',
-  path: '/campaigns',
+const AiStudioRoute = AiStudioRouteImport.update({
+  id: '/studio',
+  path: '/studio',
   getParentRoute: () => AiRoute,
 } as any)
-const ProfileUserIdRoute = ProfileUserIdRouteImport.update({
-  id: '/profile/user/$id',
-  path: '/profile/user/$id',
+const BusinessSlugRoute = BusinessSlugRouteImport.update({
+  id: '/business/$slug',
+  path: '/business/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ProfileStoryIdRoute = ProfileStoryIdRouteImport.update({
-  id: '/profile/story/$id',
-  path: '/profile/story/$id',
+const CreatorIdRoute = CreatorIdRouteImport.update({
+  id: '/creator/$id',
+  path: '/creator/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ProfileReelsIdRoute = ProfileReelsIdRouteImport.update({
-  id: '/profile/reels/$id',
-  path: '/profile/reels/$id',
+const DashboardSettingsRoute = DashboardSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DiscoverIndexRoute = DiscoverIndexRouteImport.update({
+  id: '/discover/',
+  path: '/discover/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ProfilePostIdRoute = ProfilePostIdRouteImport.update({
-  id: '/profile/post/$id',
-  path: '/profile/post/$id',
+const DiscoverCategoryRoute = DiscoverCategoryRouteImport.update({
+  id: '/discover/category',
+  path: '/discover/category',
   getParentRoute: () => rootRouteImport,
 } as any)
-const MessagesMediaIdRoute = MessagesMediaIdRouteImport.update({
-  id: '/messages/media/$id',
-  path: '/messages/media/$id',
+const DiscoverFollowingRoute = DiscoverFollowingRouteImport.update({
+  id: '/discover/following',
+  path: '/discover/following',
   getParentRoute: () => rootRouteImport,
 } as any)
-const MessagesChatIdRoute = MessagesChatIdRouteImport.update({
-  id: '/messages/chat/$id',
-  path: '/messages/chat/$id',
+const DiscoverSearchRoute = DiscoverSearchRouteImport.update({
+  id: '/discover/search',
+  path: '/discover/search',
   getParentRoute: () => rootRouteImport,
 } as any)
-const MessagesCallIdRoute = MessagesCallIdRouteImport.update({
-  id: '/messages/call/$id',
-  path: '/messages/call/$id',
+const HomeIndexRoute = HomeIndexRouteImport.update({
+  id: '/home/',
+  path: '/home/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const HousingListingIdRoute = HousingListingIdRouteImport.update({
-  id: '/housing/listing/$id',
-  path: '/housing/listing/$id',
+const HomeActivityRoute = HomeActivityRouteImport.update({
+  id: '/home/activity',
+  path: '/home/activity',
   getParentRoute: () => rootRouteImport,
 } as any)
-const HousingDatesIdRoute = HousingDatesIdRouteImport.update({
-  id: '/housing/dates/$id',
-  path: '/housing/dates/$id',
+const HomeBookedRoute = HomeBookedRouteImport.update({
+  id: '/home/booked',
+  path: '/home/booked',
   getParentRoute: () => rootRouteImport,
 } as any)
-const HousingBookIdRoute = HousingBookIdRouteImport.update({
-  id: '/housing/book/$id',
-  path: '/housing/book/$id',
+const HomeFollowingRoute = HomeFollowingRouteImport.update({
+  id: '/home/following',
+  path: '/home/following',
   getParentRoute: () => rootRouteImport,
 } as any)
-const HomeSoundIdRoute = HomeSoundIdRouteImport.update({
-  id: '/home/sound/$id',
-  path: '/home/sound/$id',
+const HomeLiveRoute = HomeLiveRouteImport.update({
+  id: '/home/live',
+  path: '/home/live',
   getParentRoute: () => rootRouteImport,
 } as any)
-const HomeShareIdRoute = HomeShareIdRouteImport.update({
-  id: '/home/share/$id',
-  path: '/home/share/$id',
+const HomeSearchRoute = HomeSearchRouteImport.update({
+  id: '/home/search',
+  path: '/home/search',
   getParentRoute: () => rootRouteImport,
 } as any)
-const HomeHashtagIdRoute = HomeHashtagIdRouteImport.update({
-  id: '/home/hashtag/$id',
-  path: '/home/hashtag/$id',
+const HousingIndexRoute = HousingIndexRouteImport.update({
+  id: '/housing/',
+  path: '/housing/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const HomeCommentsIdRoute = HomeCommentsIdRouteImport.update({
-  id: '/home/comments/$id',
-  path: '/home/comments/$id',
+const HousingIdRoute = HousingIdRouteImport.update({
+  id: '/housing/$id',
+  path: '/housing/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DiscoverShopIdRoute = DiscoverShopIdRouteImport.update({
-  id: '/discover/shop/$id',
-  path: '/discover/shop/$id',
+const HousingBookingRoute = HousingBookingRouteImport.update({
+  id: '/housing/booking',
+  path: '/housing/booking',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DiscoverSaveModalIdRoute = DiscoverSaveModalIdRouteImport.update({
-  id: '/discover/save-modal/$id',
-  path: '/discover/save-modal/$id',
+const HousingConfirmationRoute = HousingConfirmationRouteImport.update({
+  id: '/housing/confirmation',
+  path: '/housing/confirmation',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DiscoverRelatedIdRoute = DiscoverRelatedIdRouteImport.update({
-  id: '/discover/related/$id',
-  path: '/discover/related/$id',
+const HousingExperiencesRoute = HousingExperiencesRouteImport.update({
+  id: '/housing/experiences',
+  path: '/housing/experiences',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DiscoverPinIdRoute = DiscoverPinIdRouteImport.update({
-  id: '/discover/pin/$id',
-  path: '/discover/pin/$id',
+const HousingHelpRoute = HousingHelpRouteImport.update({
+  id: '/housing/help',
+  path: '/housing/help',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HousingHostRoute = HousingHostRouteImport.update({
+  id: '/housing/host',
+  path: '/housing/host',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HousingInviteRoute = HousingInviteRouteImport.update({
+  id: '/housing/invite',
+  path: '/housing/invite',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HousingMapRoute = HousingMapRouteImport.update({
+  id: '/housing/map',
+  path: '/housing/map',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HousingReservationRoute = HousingReservationRouteImport.update({
+  id: '/housing/reservation',
+  path: '/housing/reservation',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HousingSafetyRoute = HousingSafetyRouteImport.update({
+  id: '/housing/safety',
+  path: '/housing/safety',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HousingSearchRoute = HousingSearchRouteImport.update({
+  id: '/housing/search',
+  path: '/housing/search',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HousingTripsRoute = HousingTripsRouteImport.update({
+  id: '/housing/trips',
+  path: '/housing/trips',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HousingWishlistRoute = HousingWishlistRouteImport.update({
+  id: '/housing/wishlist',
+  path: '/housing/wishlist',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MembershipBillingRoute = MembershipBillingRouteImport.update({
+  id: '/billing',
+  path: '/billing',
+  getParentRoute: () => MembershipRoute,
+} as any)
+const MembershipUpgradeRoute = MembershipUpgradeRouteImport.update({
+  id: '/upgrade',
+  path: '/upgrade',
+  getParentRoute: () => MembershipRoute,
+} as any)
+const MessagesIndexRoute = MessagesIndexRouteImport.update({
+  id: '/messages/',
+  path: '/messages/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MessagesContactsRoute = MessagesContactsRouteImport.update({
+  id: '/messages/contacts',
+  path: '/messages/contacts',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MessagesNewRoute = MessagesNewRouteImport.update({
+  id: '/messages/new',
+  path: '/messages/new',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MessagesRequestsRoute = MessagesRequestsRouteImport.update({
+  id: '/messages/requests',
+  path: '/messages/requests',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MessagesSearchRoute = MessagesSearchRouteImport.update({
+  id: '/messages/search',
+  path: '/messages/search',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MessagesSettingsRoute = MessagesSettingsRouteImport.update({
+  id: '/messages/settings',
+  path: '/messages/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OnboardingIndexRoute = OnboardingIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => OnboardingRoute,
+} as any)
+const ProfileIndexRoute = ProfileIndexRouteImport.update({
+  id: '/profile/',
+  path: '/profile/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfileActivityRoute = ProfileActivityRouteImport.update({
+  id: '/profile/activity',
+  path: '/profile/activity',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfileAnalyticsRoute = ProfileAnalyticsRouteImport.update({
+  id: '/profile/analytics',
+  path: '/profile/analytics',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfileBookingsRoute = ProfileBookingsRouteImport.update({
+  id: '/profile/bookings',
+  path: '/profile/bookings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfileEditRoute = ProfileEditRouteImport.update({
+  id: '/profile/edit',
+  path: '/profile/edit',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfileFollowersRoute = ProfileFollowersRouteImport.update({
+  id: '/profile/followers',
+  path: '/profile/followers',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfileFollowingRoute = ProfileFollowingRouteImport.update({
+  id: '/profile/following',
+  path: '/profile/following',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfileHistoryRoute = ProfileHistoryRouteImport.update({
+  id: '/profile/history',
+  path: '/profile/history',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfileOrdersRoute = ProfileOrdersRouteImport.update({
+  id: '/profile/orders',
+  path: '/profile/orders',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfileQrcodeRoute = ProfileQrcodeRouteImport.update({
+  id: '/profile/qrcode',
+  path: '/profile/qrcode',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfileSavedRoute = ProfileSavedRouteImport.update({
+  id: '/profile/saved',
+  path: '/profile/saved',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfileSettingsRoute = ProfileSettingsRouteImport.update({
+  id: '/profile/settings',
+  path: '/profile/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfileTaggedRoute = ProfileTaggedRouteImport.update({
+  id: '/profile/tagged',
+  path: '/profile/tagged',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfileWalletRoute = ProfileWalletRouteImport.update({
+  id: '/profile/wallet',
+  path: '/profile/wallet',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SearchResultsRoute = SearchResultsRouteImport.update({
+  id: '/results',
+  path: '/results',
+  getParentRoute: () => SearchRoute,
+} as any)
+const CreatorVideoIdRoute = CreatorVideoIdRouteImport.update({
+  id: '/creator/video/$id',
+  path: '/creator/video/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DiscoverBoardIdRoute = DiscoverBoardIdRouteImport.update({
@@ -511,21 +460,159 @@ const DiscoverBoardIdRoute = DiscoverBoardIdRouteImport.update({
   path: '/discover/board/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
-const CreatorVideoIdRoute = CreatorVideoIdRouteImport.update({
-  id: '/creator/video/$id',
-  path: '/creator/video/$id',
+const DiscoverPinIdRoute = DiscoverPinIdRouteImport.update({
+  id: '/discover/pin/$id',
+  path: '/discover/pin/$id',
   getParentRoute: () => rootRouteImport,
+} as any)
+const DiscoverRelatedIdRoute = DiscoverRelatedIdRouteImport.update({
+  id: '/discover/related/$id',
+  path: '/discover/related/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DiscoverSaveModalIdRoute = DiscoverSaveModalIdRouteImport.update({
+  id: '/discover/save-modal/$id',
+  path: '/discover/save-modal/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DiscoverShopIdRoute = DiscoverShopIdRouteImport.update({
+  id: '/discover/shop/$id',
+  path: '/discover/shop/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HomeCommentsIdRoute = HomeCommentsIdRouteImport.update({
+  id: '/home/comments/$id',
+  path: '/home/comments/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HomeHashtagIdRoute = HomeHashtagIdRouteImport.update({
+  id: '/home/hashtag/$id',
+  path: '/home/hashtag/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HomeShareIdRoute = HomeShareIdRouteImport.update({
+  id: '/home/share/$id',
+  path: '/home/share/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HomeSoundIdRoute = HomeSoundIdRouteImport.update({
+  id: '/home/sound/$id',
+  path: '/home/sound/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HousingBookIdRoute = HousingBookIdRouteImport.update({
+  id: '/housing/book/$id',
+  path: '/housing/book/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HousingCheckoutIdRoute = HousingCheckoutIdRouteImport.update({
+  id: '/housing/checkout/$id',
+  path: '/housing/checkout/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HousingDatesIdRoute = HousingDatesIdRouteImport.update({
+  id: '/housing/dates/$id',
+  path: '/housing/dates/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HousingHostAnalyticsRoute = HousingHostAnalyticsRouteImport.update({
+  id: '/analytics',
+  path: '/analytics',
+  getParentRoute: () => HousingHostRoute,
+} as any)
+const HousingHostCalendarRoute = HousingHostCalendarRouteImport.update({
+  id: '/calendar',
+  path: '/calendar',
+  getParentRoute: () => HousingHostRoute,
+} as any)
+const HousingHostDashboardRoute = HousingHostDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => HousingHostRoute,
+} as any)
+const HousingHostListingsRoute = HousingHostListingsRouteImport.update({
+  id: '/listings',
+  path: '/listings',
+  getParentRoute: () => HousingHostRoute,
+} as any)
+const HousingHostPayoutsRoute = HousingHostPayoutsRouteImport.update({
+  id: '/payouts',
+  path: '/payouts',
+  getParentRoute: () => HousingHostRoute,
+} as any)
+const HousingHostReservationsRoute = HousingHostReservationsRouteImport.update({
+  id: '/reservations',
+  path: '/reservations',
+  getParentRoute: () => HousingHostRoute,
+} as any)
+const HousingListingIdRoute = HousingListingIdRouteImport.update({
+  id: '/housing/listing/$id',
+  path: '/housing/listing/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MessagesCallIdRoute = MessagesCallIdRouteImport.update({
+  id: '/messages/call/$id',
+  path: '/messages/call/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MessagesChatIdRoute = MessagesChatIdRouteImport.update({
+  id: '/messages/chat/$id',
+  path: '/messages/chat/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MessagesMediaIdRoute = MessagesMediaIdRouteImport.update({
+  id: '/messages/media/$id',
+  path: '/messages/media/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfilePostIdRoute = ProfilePostIdRouteImport.update({
+  id: '/profile/post/$id',
+  path: '/profile/post/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfileReelsIdRoute = ProfileReelsIdRouteImport.update({
+  id: '/profile/reels/$id',
+  path: '/profile/reels/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfileStoryIdRoute = ProfileStoryIdRouteImport.update({
+  id: '/profile/story/$id',
+  path: '/profile/story/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfileUserIdRoute = ProfileUserIdRouteImport.update({
+  id: '/profile/user/$id',
+  path: '/profile/user/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HousingCheckoutIdSuccessRoute =
+  HousingCheckoutIdSuccessRouteImport.update({
+    id: '/success',
+    path: '/success',
+    getParentRoute: () => HousingCheckoutIdRoute,
+  } as any)
+const HousingListingIdPhotosRoute = HousingListingIdPhotosRouteImport.update({
+  id: '/photos',
+  path: '/photos',
+  getParentRoute: () => HousingListingIdRoute,
 } as any)
 const HousingListingIdReviewsRoute = HousingListingIdReviewsRouteImport.update({
   id: '/reviews',
   path: '/reviews',
   getParentRoute: () => HousingListingIdRoute,
 } as any)
-const HousingListingIdPhotosRoute = HousingListingIdPhotosRouteImport.update({
-  id: '/photos',
-  path: '/photos',
-  getParentRoute: () => HousingListingIdRoute,
-} as any)
+const HousingReviewsWriteBookingIdRoute =
+  HousingReviewsWriteBookingIdRouteImport.update({
+    id: '/housing/reviews/write/$bookingId',
+    path: '/housing/reviews/write/$bookingId',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const HousingHostListingsIdEditRoute =
+  HousingHostListingsIdEditRouteImport.update({
+    id: '/$id/edit',
+    path: '/$id/edit',
+    getParentRoute: () => HousingHostListingsRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -535,7 +622,7 @@ export interface FileRoutesByFullPath {
   '/map': typeof MapRoute
   '/membership': typeof MembershipRouteWithChildren
   '/notifications': typeof NotificationsRoute
-  '/onboarding': typeof OnboardingRoute
+  '/onboarding': typeof OnboardingRouteWithChildren
   '/payments': typeof PaymentsRoute
   '/saved': typeof SavedRoute
   '/search': typeof SearchRouteWithChildren
@@ -552,6 +639,7 @@ export interface FileRoutesByFullPath {
   '/discover/following': typeof DiscoverFollowingRoute
   '/discover/search': typeof DiscoverSearchRoute
   '/home/activity': typeof HomeActivityRoute
+  '/home/booked': typeof HomeBookedRoute
   '/home/following': typeof HomeFollowingRoute
   '/home/live': typeof HomeLiveRoute
   '/home/search': typeof HomeSearchRoute
@@ -559,10 +647,12 @@ export interface FileRoutesByFullPath {
   '/housing/booking': typeof HousingBookingRoute
   '/housing/confirmation': typeof HousingConfirmationRoute
   '/housing/experiences': typeof HousingExperiencesRoute
-  '/housing/filters': typeof HousingFiltersRoute
-  '/housing/host': typeof HousingHostRoute
+  '/housing/help': typeof HousingHelpRoute
+  '/housing/host': typeof HousingHostRouteWithChildren
+  '/housing/invite': typeof HousingInviteRoute
   '/housing/map': typeof HousingMapRoute
   '/housing/reservation': typeof HousingReservationRoute
+  '/housing/safety': typeof HousingSafetyRoute
   '/housing/search': typeof HousingSearchRoute
   '/housing/trips': typeof HousingTripsRoute
   '/housing/wishlist': typeof HousingWishlistRoute
@@ -591,6 +681,7 @@ export interface FileRoutesByFullPath {
   '/home/': typeof HomeIndexRoute
   '/housing/': typeof HousingIndexRoute
   '/messages/': typeof MessagesIndexRoute
+  '/onboarding/': typeof OnboardingIndexRoute
   '/profile/': typeof ProfileIndexRoute
   '/creator/video/$id': typeof CreatorVideoIdRoute
   '/discover/board/$id': typeof DiscoverBoardIdRoute
@@ -603,7 +694,14 @@ export interface FileRoutesByFullPath {
   '/home/share/$id': typeof HomeShareIdRoute
   '/home/sound/$id': typeof HomeSoundIdRoute
   '/housing/book/$id': typeof HousingBookIdRoute
+  '/housing/checkout/$id': typeof HousingCheckoutIdRouteWithChildren
   '/housing/dates/$id': typeof HousingDatesIdRoute
+  '/housing/host/analytics': typeof HousingHostAnalyticsRoute
+  '/housing/host/calendar': typeof HousingHostCalendarRoute
+  '/housing/host/dashboard': typeof HousingHostDashboardRoute
+  '/housing/host/listings': typeof HousingHostListingsRouteWithChildren
+  '/housing/host/payouts': typeof HousingHostPayoutsRoute
+  '/housing/host/reservations': typeof HousingHostReservationsRoute
   '/housing/listing/$id': typeof HousingListingIdRouteWithChildren
   '/messages/call/$id': typeof MessagesCallIdRoute
   '/messages/chat/$id': typeof MessagesChatIdRoute
@@ -612,8 +710,11 @@ export interface FileRoutesByFullPath {
   '/profile/reels/$id': typeof ProfileReelsIdRoute
   '/profile/story/$id': typeof ProfileStoryIdRoute
   '/profile/user/$id': typeof ProfileUserIdRoute
+  '/housing/checkout/$id/success': typeof HousingCheckoutIdSuccessRoute
   '/housing/listing/$id/photos': typeof HousingListingIdPhotosRoute
   '/housing/listing/$id/reviews': typeof HousingListingIdReviewsRoute
+  '/housing/reviews/write/$bookingId': typeof HousingReviewsWriteBookingIdRoute
+  '/housing/host/listings/$id/edit': typeof HousingHostListingsIdEditRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -623,7 +724,6 @@ export interface FileRoutesByTo {
   '/map': typeof MapRoute
   '/membership': typeof MembershipRouteWithChildren
   '/notifications': typeof NotificationsRoute
-  '/onboarding': typeof OnboardingRoute
   '/payments': typeof PaymentsRoute
   '/saved': typeof SavedRoute
   '/search': typeof SearchRouteWithChildren
@@ -640,6 +740,7 @@ export interface FileRoutesByTo {
   '/discover/following': typeof DiscoverFollowingRoute
   '/discover/search': typeof DiscoverSearchRoute
   '/home/activity': typeof HomeActivityRoute
+  '/home/booked': typeof HomeBookedRoute
   '/home/following': typeof HomeFollowingRoute
   '/home/live': typeof HomeLiveRoute
   '/home/search': typeof HomeSearchRoute
@@ -647,10 +748,12 @@ export interface FileRoutesByTo {
   '/housing/booking': typeof HousingBookingRoute
   '/housing/confirmation': typeof HousingConfirmationRoute
   '/housing/experiences': typeof HousingExperiencesRoute
-  '/housing/filters': typeof HousingFiltersRoute
-  '/housing/host': typeof HousingHostRoute
+  '/housing/help': typeof HousingHelpRoute
+  '/housing/host': typeof HousingHostRouteWithChildren
+  '/housing/invite': typeof HousingInviteRoute
   '/housing/map': typeof HousingMapRoute
   '/housing/reservation': typeof HousingReservationRoute
+  '/housing/safety': typeof HousingSafetyRoute
   '/housing/search': typeof HousingSearchRoute
   '/housing/trips': typeof HousingTripsRoute
   '/housing/wishlist': typeof HousingWishlistRoute
@@ -679,6 +782,7 @@ export interface FileRoutesByTo {
   '/home': typeof HomeIndexRoute
   '/housing': typeof HousingIndexRoute
   '/messages': typeof MessagesIndexRoute
+  '/onboarding': typeof OnboardingIndexRoute
   '/profile': typeof ProfileIndexRoute
   '/creator/video/$id': typeof CreatorVideoIdRoute
   '/discover/board/$id': typeof DiscoverBoardIdRoute
@@ -691,7 +795,14 @@ export interface FileRoutesByTo {
   '/home/share/$id': typeof HomeShareIdRoute
   '/home/sound/$id': typeof HomeSoundIdRoute
   '/housing/book/$id': typeof HousingBookIdRoute
+  '/housing/checkout/$id': typeof HousingCheckoutIdRouteWithChildren
   '/housing/dates/$id': typeof HousingDatesIdRoute
+  '/housing/host/analytics': typeof HousingHostAnalyticsRoute
+  '/housing/host/calendar': typeof HousingHostCalendarRoute
+  '/housing/host/dashboard': typeof HousingHostDashboardRoute
+  '/housing/host/listings': typeof HousingHostListingsRouteWithChildren
+  '/housing/host/payouts': typeof HousingHostPayoutsRoute
+  '/housing/host/reservations': typeof HousingHostReservationsRoute
   '/housing/listing/$id': typeof HousingListingIdRouteWithChildren
   '/messages/call/$id': typeof MessagesCallIdRoute
   '/messages/chat/$id': typeof MessagesChatIdRoute
@@ -700,8 +811,11 @@ export interface FileRoutesByTo {
   '/profile/reels/$id': typeof ProfileReelsIdRoute
   '/profile/story/$id': typeof ProfileStoryIdRoute
   '/profile/user/$id': typeof ProfileUserIdRoute
+  '/housing/checkout/$id/success': typeof HousingCheckoutIdSuccessRoute
   '/housing/listing/$id/photos': typeof HousingListingIdPhotosRoute
   '/housing/listing/$id/reviews': typeof HousingListingIdReviewsRoute
+  '/housing/reviews/write/$bookingId': typeof HousingReviewsWriteBookingIdRoute
+  '/housing/host/listings/$id/edit': typeof HousingHostListingsIdEditRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -712,7 +826,7 @@ export interface FileRoutesById {
   '/map': typeof MapRoute
   '/membership': typeof MembershipRouteWithChildren
   '/notifications': typeof NotificationsRoute
-  '/onboarding': typeof OnboardingRoute
+  '/onboarding': typeof OnboardingRouteWithChildren
   '/payments': typeof PaymentsRoute
   '/saved': typeof SavedRoute
   '/search': typeof SearchRouteWithChildren
@@ -729,6 +843,7 @@ export interface FileRoutesById {
   '/discover/following': typeof DiscoverFollowingRoute
   '/discover/search': typeof DiscoverSearchRoute
   '/home/activity': typeof HomeActivityRoute
+  '/home/booked': typeof HomeBookedRoute
   '/home/following': typeof HomeFollowingRoute
   '/home/live': typeof HomeLiveRoute
   '/home/search': typeof HomeSearchRoute
@@ -736,10 +851,12 @@ export interface FileRoutesById {
   '/housing/booking': typeof HousingBookingRoute
   '/housing/confirmation': typeof HousingConfirmationRoute
   '/housing/experiences': typeof HousingExperiencesRoute
-  '/housing/filters': typeof HousingFiltersRoute
-  '/housing/host': typeof HousingHostRoute
+  '/housing/help': typeof HousingHelpRoute
+  '/housing/host': typeof HousingHostRouteWithChildren
+  '/housing/invite': typeof HousingInviteRoute
   '/housing/map': typeof HousingMapRoute
   '/housing/reservation': typeof HousingReservationRoute
+  '/housing/safety': typeof HousingSafetyRoute
   '/housing/search': typeof HousingSearchRoute
   '/housing/trips': typeof HousingTripsRoute
   '/housing/wishlist': typeof HousingWishlistRoute
@@ -768,6 +885,7 @@ export interface FileRoutesById {
   '/home/': typeof HomeIndexRoute
   '/housing/': typeof HousingIndexRoute
   '/messages/': typeof MessagesIndexRoute
+  '/onboarding/': typeof OnboardingIndexRoute
   '/profile/': typeof ProfileIndexRoute
   '/creator/video/$id': typeof CreatorVideoIdRoute
   '/discover/board/$id': typeof DiscoverBoardIdRoute
@@ -780,7 +898,14 @@ export interface FileRoutesById {
   '/home/share/$id': typeof HomeShareIdRoute
   '/home/sound/$id': typeof HomeSoundIdRoute
   '/housing/book/$id': typeof HousingBookIdRoute
+  '/housing/checkout/$id': typeof HousingCheckoutIdRouteWithChildren
   '/housing/dates/$id': typeof HousingDatesIdRoute
+  '/housing/host/analytics': typeof HousingHostAnalyticsRoute
+  '/housing/host/calendar': typeof HousingHostCalendarRoute
+  '/housing/host/dashboard': typeof HousingHostDashboardRoute
+  '/housing/host/listings': typeof HousingHostListingsRouteWithChildren
+  '/housing/host/payouts': typeof HousingHostPayoutsRoute
+  '/housing/host/reservations': typeof HousingHostReservationsRoute
   '/housing/listing/$id': typeof HousingListingIdRouteWithChildren
   '/messages/call/$id': typeof MessagesCallIdRoute
   '/messages/chat/$id': typeof MessagesChatIdRoute
@@ -789,8 +914,11 @@ export interface FileRoutesById {
   '/profile/reels/$id': typeof ProfileReelsIdRoute
   '/profile/story/$id': typeof ProfileStoryIdRoute
   '/profile/user/$id': typeof ProfileUserIdRoute
+  '/housing/checkout/$id/success': typeof HousingCheckoutIdSuccessRoute
   '/housing/listing/$id/photos': typeof HousingListingIdPhotosRoute
   '/housing/listing/$id/reviews': typeof HousingListingIdReviewsRoute
+  '/housing/reviews/write/$bookingId': typeof HousingReviewsWriteBookingIdRoute
+  '/housing/host/listings/$id/edit': typeof HousingHostListingsIdEditRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -819,6 +947,7 @@ export interface FileRouteTypes {
     | '/discover/following'
     | '/discover/search'
     | '/home/activity'
+    | '/home/booked'
     | '/home/following'
     | '/home/live'
     | '/home/search'
@@ -826,10 +955,12 @@ export interface FileRouteTypes {
     | '/housing/booking'
     | '/housing/confirmation'
     | '/housing/experiences'
-    | '/housing/filters'
+    | '/housing/help'
     | '/housing/host'
+    | '/housing/invite'
     | '/housing/map'
     | '/housing/reservation'
+    | '/housing/safety'
     | '/housing/search'
     | '/housing/trips'
     | '/housing/wishlist'
@@ -858,6 +989,7 @@ export interface FileRouteTypes {
     | '/home/'
     | '/housing/'
     | '/messages/'
+    | '/onboarding/'
     | '/profile/'
     | '/creator/video/$id'
     | '/discover/board/$id'
@@ -870,7 +1002,14 @@ export interface FileRouteTypes {
     | '/home/share/$id'
     | '/home/sound/$id'
     | '/housing/book/$id'
+    | '/housing/checkout/$id'
     | '/housing/dates/$id'
+    | '/housing/host/analytics'
+    | '/housing/host/calendar'
+    | '/housing/host/dashboard'
+    | '/housing/host/listings'
+    | '/housing/host/payouts'
+    | '/housing/host/reservations'
     | '/housing/listing/$id'
     | '/messages/call/$id'
     | '/messages/chat/$id'
@@ -879,8 +1018,11 @@ export interface FileRouteTypes {
     | '/profile/reels/$id'
     | '/profile/story/$id'
     | '/profile/user/$id'
+    | '/housing/checkout/$id/success'
     | '/housing/listing/$id/photos'
     | '/housing/listing/$id/reviews'
+    | '/housing/reviews/write/$bookingId'
+    | '/housing/host/listings/$id/edit'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -890,7 +1032,6 @@ export interface FileRouteTypes {
     | '/map'
     | '/membership'
     | '/notifications'
-    | '/onboarding'
     | '/payments'
     | '/saved'
     | '/search'
@@ -907,6 +1048,7 @@ export interface FileRouteTypes {
     | '/discover/following'
     | '/discover/search'
     | '/home/activity'
+    | '/home/booked'
     | '/home/following'
     | '/home/live'
     | '/home/search'
@@ -914,10 +1056,12 @@ export interface FileRouteTypes {
     | '/housing/booking'
     | '/housing/confirmation'
     | '/housing/experiences'
-    | '/housing/filters'
+    | '/housing/help'
     | '/housing/host'
+    | '/housing/invite'
     | '/housing/map'
     | '/housing/reservation'
+    | '/housing/safety'
     | '/housing/search'
     | '/housing/trips'
     | '/housing/wishlist'
@@ -946,6 +1090,7 @@ export interface FileRouteTypes {
     | '/home'
     | '/housing'
     | '/messages'
+    | '/onboarding'
     | '/profile'
     | '/creator/video/$id'
     | '/discover/board/$id'
@@ -958,7 +1103,14 @@ export interface FileRouteTypes {
     | '/home/share/$id'
     | '/home/sound/$id'
     | '/housing/book/$id'
+    | '/housing/checkout/$id'
     | '/housing/dates/$id'
+    | '/housing/host/analytics'
+    | '/housing/host/calendar'
+    | '/housing/host/dashboard'
+    | '/housing/host/listings'
+    | '/housing/host/payouts'
+    | '/housing/host/reservations'
     | '/housing/listing/$id'
     | '/messages/call/$id'
     | '/messages/chat/$id'
@@ -967,8 +1119,11 @@ export interface FileRouteTypes {
     | '/profile/reels/$id'
     | '/profile/story/$id'
     | '/profile/user/$id'
+    | '/housing/checkout/$id/success'
     | '/housing/listing/$id/photos'
     | '/housing/listing/$id/reviews'
+    | '/housing/reviews/write/$bookingId'
+    | '/housing/host/listings/$id/edit'
   id:
     | '__root__'
     | '/'
@@ -995,6 +1150,7 @@ export interface FileRouteTypes {
     | '/discover/following'
     | '/discover/search'
     | '/home/activity'
+    | '/home/booked'
     | '/home/following'
     | '/home/live'
     | '/home/search'
@@ -1002,10 +1158,12 @@ export interface FileRouteTypes {
     | '/housing/booking'
     | '/housing/confirmation'
     | '/housing/experiences'
-    | '/housing/filters'
+    | '/housing/help'
     | '/housing/host'
+    | '/housing/invite'
     | '/housing/map'
     | '/housing/reservation'
+    | '/housing/safety'
     | '/housing/search'
     | '/housing/trips'
     | '/housing/wishlist'
@@ -1034,6 +1192,7 @@ export interface FileRouteTypes {
     | '/home/'
     | '/housing/'
     | '/messages/'
+    | '/onboarding/'
     | '/profile/'
     | '/creator/video/$id'
     | '/discover/board/$id'
@@ -1046,7 +1205,14 @@ export interface FileRouteTypes {
     | '/home/share/$id'
     | '/home/sound/$id'
     | '/housing/book/$id'
+    | '/housing/checkout/$id'
     | '/housing/dates/$id'
+    | '/housing/host/analytics'
+    | '/housing/host/calendar'
+    | '/housing/host/dashboard'
+    | '/housing/host/listings'
+    | '/housing/host/payouts'
+    | '/housing/host/reservations'
     | '/housing/listing/$id'
     | '/messages/call/$id'
     | '/messages/chat/$id'
@@ -1055,8 +1221,11 @@ export interface FileRouteTypes {
     | '/profile/reels/$id'
     | '/profile/story/$id'
     | '/profile/user/$id'
+    | '/housing/checkout/$id/success'
     | '/housing/listing/$id/photos'
     | '/housing/listing/$id/reviews'
+    | '/housing/reviews/write/$bookingId'
+    | '/housing/host/listings/$id/edit'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -1067,7 +1236,7 @@ export interface RootRouteChildren {
   MapRoute: typeof MapRoute
   MembershipRoute: typeof MembershipRouteWithChildren
   NotificationsRoute: typeof NotificationsRoute
-  OnboardingRoute: typeof OnboardingRoute
+  OnboardingRoute: typeof OnboardingRouteWithChildren
   PaymentsRoute: typeof PaymentsRoute
   SavedRoute: typeof SavedRoute
   SearchRoute: typeof SearchRouteWithChildren
@@ -1080,6 +1249,7 @@ export interface RootRouteChildren {
   DiscoverFollowingRoute: typeof DiscoverFollowingRoute
   DiscoverSearchRoute: typeof DiscoverSearchRoute
   HomeActivityRoute: typeof HomeActivityRoute
+  HomeBookedRoute: typeof HomeBookedRoute
   HomeFollowingRoute: typeof HomeFollowingRoute
   HomeLiveRoute: typeof HomeLiveRoute
   HomeSearchRoute: typeof HomeSearchRoute
@@ -1087,10 +1257,12 @@ export interface RootRouteChildren {
   HousingBookingRoute: typeof HousingBookingRoute
   HousingConfirmationRoute: typeof HousingConfirmationRoute
   HousingExperiencesRoute: typeof HousingExperiencesRoute
-  HousingFiltersRoute: typeof HousingFiltersRoute
-  HousingHostRoute: typeof HousingHostRoute
+  HousingHelpRoute: typeof HousingHelpRoute
+  HousingHostRoute: typeof HousingHostRouteWithChildren
+  HousingInviteRoute: typeof HousingInviteRoute
   HousingMapRoute: typeof HousingMapRoute
   HousingReservationRoute: typeof HousingReservationRoute
+  HousingSafetyRoute: typeof HousingSafetyRoute
   HousingSearchRoute: typeof HousingSearchRoute
   HousingTripsRoute: typeof HousingTripsRoute
   HousingWishlistRoute: typeof HousingWishlistRoute
@@ -1128,6 +1300,7 @@ export interface RootRouteChildren {
   HomeShareIdRoute: typeof HomeShareIdRoute
   HomeSoundIdRoute: typeof HomeSoundIdRoute
   HousingBookIdRoute: typeof HousingBookIdRoute
+  HousingCheckoutIdRoute: typeof HousingCheckoutIdRouteWithChildren
   HousingDatesIdRoute: typeof HousingDatesIdRoute
   HousingListingIdRoute: typeof HousingListingIdRouteWithChildren
   MessagesCallIdRoute: typeof MessagesCallIdRoute
@@ -1137,92 +1310,16 @@ export interface RootRouteChildren {
   ProfileReelsIdRoute: typeof ProfileReelsIdRoute
   ProfileStoryIdRoute: typeof ProfileStoryIdRoute
   ProfileUserIdRoute: typeof ProfileUserIdRoute
+  HousingReviewsWriteBookingIdRoute: typeof HousingReviewsWriteBookingIdRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/wallet': {
-      id: '/wallet'
-      path: '/wallet'
-      fullPath: '/wallet'
-      preLoaderRoute: typeof WalletRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/trust': {
-      id: '/trust'
-      path: '/trust'
-      fullPath: '/trust'
-      preLoaderRoute: typeof TrustRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/share': {
-      id: '/share'
-      path: '/share'
-      fullPath: '/share'
-      preLoaderRoute: typeof ShareRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/search': {
-      id: '/search'
-      path: '/search'
-      fullPath: '/search'
-      preLoaderRoute: typeof SearchRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/saved': {
-      id: '/saved'
-      path: '/saved'
-      fullPath: '/saved'
-      preLoaderRoute: typeof SavedRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/payments': {
-      id: '/payments'
-      path: '/payments'
-      fullPath: '/payments'
-      preLoaderRoute: typeof PaymentsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/onboarding': {
-      id: '/onboarding'
-      path: '/onboarding'
-      fullPath: '/onboarding'
-      preLoaderRoute: typeof OnboardingRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/notifications': {
-      id: '/notifications'
-      path: '/notifications'
-      fullPath: '/notifications'
-      preLoaderRoute: typeof NotificationsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/membership': {
-      id: '/membership'
-      path: '/membership'
-      fullPath: '/membership'
-      preLoaderRoute: typeof MembershipRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/map': {
-      id: '/map'
-      path: '/map'
-      fullPath: '/map'
-      preLoaderRoute: typeof MapRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/manifesto': {
-      id: '/manifesto'
-      path: '/manifesto'
-      fullPath: '/manifesto'
-      preLoaderRoute: typeof ManifestoRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/dashboard': {
-      id: '/dashboard'
-      path: '/dashboard'
-      fullPath: '/dashboard'
-      preLoaderRoute: typeof DashboardRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/ai': {
@@ -1232,347 +1329,95 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AiRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/profile/': {
-      id: '/profile/'
-      path: '/profile'
-      fullPath: '/profile/'
-      preLoaderRoute: typeof ProfileIndexRouteImport
+    '/manifesto': {
+      id: '/manifesto'
+      path: '/manifesto'
+      fullPath: '/manifesto'
+      preLoaderRoute: typeof ManifestoRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/messages/': {
-      id: '/messages/'
-      path: '/messages'
-      fullPath: '/messages/'
-      preLoaderRoute: typeof MessagesIndexRouteImport
+    '/map': {
+      id: '/map'
+      path: '/map'
+      fullPath: '/map'
+      preLoaderRoute: typeof MapRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/housing/': {
-      id: '/housing/'
-      path: '/housing'
-      fullPath: '/housing/'
-      preLoaderRoute: typeof HousingIndexRouteImport
+    '/membership': {
+      id: '/membership'
+      path: '/membership'
+      fullPath: '/membership'
+      preLoaderRoute: typeof MembershipRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/home/': {
-      id: '/home/'
-      path: '/home'
-      fullPath: '/home/'
-      preLoaderRoute: typeof HomeIndexRouteImport
+    '/notifications': {
+      id: '/notifications'
+      path: '/notifications'
+      fullPath: '/notifications'
+      preLoaderRoute: typeof NotificationsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/discover/': {
-      id: '/discover/'
-      path: '/discover'
-      fullPath: '/discover/'
-      preLoaderRoute: typeof DiscoverIndexRouteImport
+    '/onboarding': {
+      id: '/onboarding'
+      path: '/onboarding'
+      fullPath: '/onboarding'
+      preLoaderRoute: typeof OnboardingRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/search/results': {
-      id: '/search/results'
-      path: '/results'
-      fullPath: '/search/results'
-      preLoaderRoute: typeof SearchResultsRouteImport
-      parentRoute: typeof SearchRoute
-    }
-    '/profile/wallet': {
-      id: '/profile/wallet'
-      path: '/profile/wallet'
-      fullPath: '/profile/wallet'
-      preLoaderRoute: typeof ProfileWalletRouteImport
+    '/payments': {
+      id: '/payments'
+      path: '/payments'
+      fullPath: '/payments'
+      preLoaderRoute: typeof PaymentsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/profile/tagged': {
-      id: '/profile/tagged'
-      path: '/profile/tagged'
-      fullPath: '/profile/tagged'
-      preLoaderRoute: typeof ProfileTaggedRouteImport
+    '/saved': {
+      id: '/saved'
+      path: '/saved'
+      fullPath: '/saved'
+      preLoaderRoute: typeof SavedRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/profile/settings': {
-      id: '/profile/settings'
-      path: '/profile/settings'
-      fullPath: '/profile/settings'
-      preLoaderRoute: typeof ProfileSettingsRouteImport
+    '/search': {
+      id: '/search'
+      path: '/search'
+      fullPath: '/search'
+      preLoaderRoute: typeof SearchRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/profile/saved': {
-      id: '/profile/saved'
-      path: '/profile/saved'
-      fullPath: '/profile/saved'
-      preLoaderRoute: typeof ProfileSavedRouteImport
+    '/share': {
+      id: '/share'
+      path: '/share'
+      fullPath: '/share'
+      preLoaderRoute: typeof ShareRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/profile/qrcode': {
-      id: '/profile/qrcode'
-      path: '/profile/qrcode'
-      fullPath: '/profile/qrcode'
-      preLoaderRoute: typeof ProfileQrcodeRouteImport
+    '/trust': {
+      id: '/trust'
+      path: '/trust'
+      fullPath: '/trust'
+      preLoaderRoute: typeof TrustRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/profile/orders': {
-      id: '/profile/orders'
-      path: '/profile/orders'
-      fullPath: '/profile/orders'
-      preLoaderRoute: typeof ProfileOrdersRouteImport
+    '/wallet': {
+      id: '/wallet'
+      path: '/wallet'
+      fullPath: '/wallet'
+      preLoaderRoute: typeof WalletRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/profile/history': {
-      id: '/profile/history'
-      path: '/profile/history'
-      fullPath: '/profile/history'
-      preLoaderRoute: typeof ProfileHistoryRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/profile/following': {
-      id: '/profile/following'
-      path: '/profile/following'
-      fullPath: '/profile/following'
-      preLoaderRoute: typeof ProfileFollowingRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/profile/followers': {
-      id: '/profile/followers'
-      path: '/profile/followers'
-      fullPath: '/profile/followers'
-      preLoaderRoute: typeof ProfileFollowersRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/profile/edit': {
-      id: '/profile/edit'
-      path: '/profile/edit'
-      fullPath: '/profile/edit'
-      preLoaderRoute: typeof ProfileEditRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/profile/bookings': {
-      id: '/profile/bookings'
-      path: '/profile/bookings'
-      fullPath: '/profile/bookings'
-      preLoaderRoute: typeof ProfileBookingsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/profile/analytics': {
-      id: '/profile/analytics'
-      path: '/profile/analytics'
-      fullPath: '/profile/analytics'
-      preLoaderRoute: typeof ProfileAnalyticsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/profile/activity': {
-      id: '/profile/activity'
-      path: '/profile/activity'
-      fullPath: '/profile/activity'
-      preLoaderRoute: typeof ProfileActivityRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/messages/settings': {
-      id: '/messages/settings'
-      path: '/messages/settings'
-      fullPath: '/messages/settings'
-      preLoaderRoute: typeof MessagesSettingsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/messages/search': {
-      id: '/messages/search'
-      path: '/messages/search'
-      fullPath: '/messages/search'
-      preLoaderRoute: typeof MessagesSearchRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/messages/requests': {
-      id: '/messages/requests'
-      path: '/messages/requests'
-      fullPath: '/messages/requests'
-      preLoaderRoute: typeof MessagesRequestsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/messages/new': {
-      id: '/messages/new'
-      path: '/messages/new'
-      fullPath: '/messages/new'
-      preLoaderRoute: typeof MessagesNewRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/messages/contacts': {
-      id: '/messages/contacts'
-      path: '/messages/contacts'
-      fullPath: '/messages/contacts'
-      preLoaderRoute: typeof MessagesContactsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/membership/upgrade': {
-      id: '/membership/upgrade'
-      path: '/upgrade'
-      fullPath: '/membership/upgrade'
-      preLoaderRoute: typeof MembershipUpgradeRouteImport
-      parentRoute: typeof MembershipRoute
-    }
-    '/membership/billing': {
-      id: '/membership/billing'
-      path: '/billing'
-      fullPath: '/membership/billing'
-      preLoaderRoute: typeof MembershipBillingRouteImport
-      parentRoute: typeof MembershipRoute
-    }
-    '/housing/wishlist': {
-      id: '/housing/wishlist'
-      path: '/housing/wishlist'
-      fullPath: '/housing/wishlist'
-      preLoaderRoute: typeof HousingWishlistRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/housing/trips': {
-      id: '/housing/trips'
-      path: '/housing/trips'
-      fullPath: '/housing/trips'
-      preLoaderRoute: typeof HousingTripsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/housing/search': {
-      id: '/housing/search'
-      path: '/housing/search'
-      fullPath: '/housing/search'
-      preLoaderRoute: typeof HousingSearchRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/housing/reservation': {
-      id: '/housing/reservation'
-      path: '/housing/reservation'
-      fullPath: '/housing/reservation'
-      preLoaderRoute: typeof HousingReservationRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/housing/map': {
-      id: '/housing/map'
-      path: '/housing/map'
-      fullPath: '/housing/map'
-      preLoaderRoute: typeof HousingMapRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/housing/host': {
-      id: '/housing/host'
-      path: '/housing/host'
-      fullPath: '/housing/host'
-      preLoaderRoute: typeof HousingHostRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/housing/filters': {
-      id: '/housing/filters'
-      path: '/housing/filters'
-      fullPath: '/housing/filters'
-      preLoaderRoute: typeof HousingFiltersRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/housing/experiences': {
-      id: '/housing/experiences'
-      path: '/housing/experiences'
-      fullPath: '/housing/experiences'
-      preLoaderRoute: typeof HousingExperiencesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/housing/confirmation': {
-      id: '/housing/confirmation'
-      path: '/housing/confirmation'
-      fullPath: '/housing/confirmation'
-      preLoaderRoute: typeof HousingConfirmationRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/housing/booking': {
-      id: '/housing/booking'
-      path: '/housing/booking'
-      fullPath: '/housing/booking'
-      preLoaderRoute: typeof HousingBookingRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/housing/$id': {
-      id: '/housing/$id'
-      path: '/housing/$id'
-      fullPath: '/housing/$id'
-      preLoaderRoute: typeof HousingIdRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/home/search': {
-      id: '/home/search'
-      path: '/home/search'
-      fullPath: '/home/search'
-      preLoaderRoute: typeof HomeSearchRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/home/live': {
-      id: '/home/live'
-      path: '/home/live'
-      fullPath: '/home/live'
-      preLoaderRoute: typeof HomeLiveRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/home/following': {
-      id: '/home/following'
-      path: '/home/following'
-      fullPath: '/home/following'
-      preLoaderRoute: typeof HomeFollowingRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/home/activity': {
-      id: '/home/activity'
-      path: '/home/activity'
-      fullPath: '/home/activity'
-      preLoaderRoute: typeof HomeActivityRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/discover/search': {
-      id: '/discover/search'
-      path: '/discover/search'
-      fullPath: '/discover/search'
-      preLoaderRoute: typeof DiscoverSearchRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/discover/following': {
-      id: '/discover/following'
-      path: '/discover/following'
-      fullPath: '/discover/following'
-      preLoaderRoute: typeof DiscoverFollowingRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/discover/category': {
-      id: '/discover/category'
-      path: '/discover/category'
-      fullPath: '/discover/category'
-      preLoaderRoute: typeof DiscoverCategoryRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/dashboard/settings': {
-      id: '/dashboard/settings'
-      path: '/settings'
-      fullPath: '/dashboard/settings'
-      preLoaderRoute: typeof DashboardSettingsRouteImport
-      parentRoute: typeof DashboardRoute
-    }
-    '/creator/$id': {
-      id: '/creator/$id'
-      path: '/creator/$id'
-      fullPath: '/creator/$id'
-      preLoaderRoute: typeof CreatorIdRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/business/$slug': {
-      id: '/business/$slug'
-      path: '/business/$slug'
-      fullPath: '/business/$slug'
-      preLoaderRoute: typeof BusinessSlugRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/ai/studio': {
-      id: '/ai/studio'
-      path: '/studio'
-      fullPath: '/ai/studio'
-      preLoaderRoute: typeof AiStudioRouteImport
+    '/ai/campaigns': {
+      id: '/ai/campaigns'
+      path: '/campaigns'
+      fullPath: '/ai/campaigns'
+      preLoaderRoute: typeof AiCampaignsRouteImport
       parentRoute: typeof AiRoute
     }
     '/ai/insights': {
@@ -1582,137 +1427,375 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AiInsightsRouteImport
       parentRoute: typeof AiRoute
     }
-    '/ai/campaigns': {
-      id: '/ai/campaigns'
-      path: '/campaigns'
-      fullPath: '/ai/campaigns'
-      preLoaderRoute: typeof AiCampaignsRouteImport
+    '/ai/studio': {
+      id: '/ai/studio'
+      path: '/studio'
+      fullPath: '/ai/studio'
+      preLoaderRoute: typeof AiStudioRouteImport
       parentRoute: typeof AiRoute
     }
-    '/profile/user/$id': {
-      id: '/profile/user/$id'
-      path: '/profile/user/$id'
-      fullPath: '/profile/user/$id'
-      preLoaderRoute: typeof ProfileUserIdRouteImport
+    '/business/$slug': {
+      id: '/business/$slug'
+      path: '/business/$slug'
+      fullPath: '/business/$slug'
+      preLoaderRoute: typeof BusinessSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/profile/story/$id': {
-      id: '/profile/story/$id'
-      path: '/profile/story/$id'
-      fullPath: '/profile/story/$id'
-      preLoaderRoute: typeof ProfileStoryIdRouteImport
+    '/creator/$id': {
+      id: '/creator/$id'
+      path: '/creator/$id'
+      fullPath: '/creator/$id'
+      preLoaderRoute: typeof CreatorIdRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/profile/reels/$id': {
-      id: '/profile/reels/$id'
-      path: '/profile/reels/$id'
-      fullPath: '/profile/reels/$id'
-      preLoaderRoute: typeof ProfileReelsIdRouteImport
+    '/dashboard/settings': {
+      id: '/dashboard/settings'
+      path: '/settings'
+      fullPath: '/dashboard/settings'
+      preLoaderRoute: typeof DashboardSettingsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/discover/': {
+      id: '/discover/'
+      path: '/discover'
+      fullPath: '/discover/'
+      preLoaderRoute: typeof DiscoverIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/profile/post/$id': {
-      id: '/profile/post/$id'
-      path: '/profile/post/$id'
-      fullPath: '/profile/post/$id'
-      preLoaderRoute: typeof ProfilePostIdRouteImport
+    '/discover/category': {
+      id: '/discover/category'
+      path: '/discover/category'
+      fullPath: '/discover/category'
+      preLoaderRoute: typeof DiscoverCategoryRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/messages/media/$id': {
-      id: '/messages/media/$id'
-      path: '/messages/media/$id'
-      fullPath: '/messages/media/$id'
-      preLoaderRoute: typeof MessagesMediaIdRouteImport
+    '/discover/following': {
+      id: '/discover/following'
+      path: '/discover/following'
+      fullPath: '/discover/following'
+      preLoaderRoute: typeof DiscoverFollowingRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/messages/chat/$id': {
-      id: '/messages/chat/$id'
-      path: '/messages/chat/$id'
-      fullPath: '/messages/chat/$id'
-      preLoaderRoute: typeof MessagesChatIdRouteImport
+    '/discover/search': {
+      id: '/discover/search'
+      path: '/discover/search'
+      fullPath: '/discover/search'
+      preLoaderRoute: typeof DiscoverSearchRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/messages/call/$id': {
-      id: '/messages/call/$id'
-      path: '/messages/call/$id'
-      fullPath: '/messages/call/$id'
-      preLoaderRoute: typeof MessagesCallIdRouteImport
+    '/home/': {
+      id: '/home/'
+      path: '/home'
+      fullPath: '/home/'
+      preLoaderRoute: typeof HomeIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/housing/listing/$id': {
-      id: '/housing/listing/$id'
-      path: '/housing/listing/$id'
-      fullPath: '/housing/listing/$id'
-      preLoaderRoute: typeof HousingListingIdRouteImport
+    '/home/activity': {
+      id: '/home/activity'
+      path: '/home/activity'
+      fullPath: '/home/activity'
+      preLoaderRoute: typeof HomeActivityRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/housing/dates/$id': {
-      id: '/housing/dates/$id'
-      path: '/housing/dates/$id'
-      fullPath: '/housing/dates/$id'
-      preLoaderRoute: typeof HousingDatesIdRouteImport
+    '/home/booked': {
+      id: '/home/booked'
+      path: '/home/booked'
+      fullPath: '/home/booked'
+      preLoaderRoute: typeof HomeBookedRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/housing/book/$id': {
-      id: '/housing/book/$id'
-      path: '/housing/book/$id'
-      fullPath: '/housing/book/$id'
-      preLoaderRoute: typeof HousingBookIdRouteImport
+    '/home/following': {
+      id: '/home/following'
+      path: '/home/following'
+      fullPath: '/home/following'
+      preLoaderRoute: typeof HomeFollowingRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/home/sound/$id': {
-      id: '/home/sound/$id'
-      path: '/home/sound/$id'
-      fullPath: '/home/sound/$id'
-      preLoaderRoute: typeof HomeSoundIdRouteImport
+    '/home/live': {
+      id: '/home/live'
+      path: '/home/live'
+      fullPath: '/home/live'
+      preLoaderRoute: typeof HomeLiveRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/home/share/$id': {
-      id: '/home/share/$id'
-      path: '/home/share/$id'
-      fullPath: '/home/share/$id'
-      preLoaderRoute: typeof HomeShareIdRouteImport
+    '/home/search': {
+      id: '/home/search'
+      path: '/home/search'
+      fullPath: '/home/search'
+      preLoaderRoute: typeof HomeSearchRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/home/hashtag/$id': {
-      id: '/home/hashtag/$id'
-      path: '/home/hashtag/$id'
-      fullPath: '/home/hashtag/$id'
-      preLoaderRoute: typeof HomeHashtagIdRouteImport
+    '/housing/': {
+      id: '/housing/'
+      path: '/housing'
+      fullPath: '/housing/'
+      preLoaderRoute: typeof HousingIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/home/comments/$id': {
-      id: '/home/comments/$id'
-      path: '/home/comments/$id'
-      fullPath: '/home/comments/$id'
-      preLoaderRoute: typeof HomeCommentsIdRouteImport
+    '/housing/$id': {
+      id: '/housing/$id'
+      path: '/housing/$id'
+      fullPath: '/housing/$id'
+      preLoaderRoute: typeof HousingIdRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/discover/shop/$id': {
-      id: '/discover/shop/$id'
-      path: '/discover/shop/$id'
-      fullPath: '/discover/shop/$id'
-      preLoaderRoute: typeof DiscoverShopIdRouteImport
+    '/housing/booking': {
+      id: '/housing/booking'
+      path: '/housing/booking'
+      fullPath: '/housing/booking'
+      preLoaderRoute: typeof HousingBookingRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/discover/save-modal/$id': {
-      id: '/discover/save-modal/$id'
-      path: '/discover/save-modal/$id'
-      fullPath: '/discover/save-modal/$id'
-      preLoaderRoute: typeof DiscoverSaveModalIdRouteImport
+    '/housing/confirmation': {
+      id: '/housing/confirmation'
+      path: '/housing/confirmation'
+      fullPath: '/housing/confirmation'
+      preLoaderRoute: typeof HousingConfirmationRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/discover/related/$id': {
-      id: '/discover/related/$id'
-      path: '/discover/related/$id'
-      fullPath: '/discover/related/$id'
-      preLoaderRoute: typeof DiscoverRelatedIdRouteImport
+    '/housing/experiences': {
+      id: '/housing/experiences'
+      path: '/housing/experiences'
+      fullPath: '/housing/experiences'
+      preLoaderRoute: typeof HousingExperiencesRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/discover/pin/$id': {
-      id: '/discover/pin/$id'
-      path: '/discover/pin/$id'
-      fullPath: '/discover/pin/$id'
-      preLoaderRoute: typeof DiscoverPinIdRouteImport
+    '/housing/help': {
+      id: '/housing/help'
+      path: '/housing/help'
+      fullPath: '/housing/help'
+      preLoaderRoute: typeof HousingHelpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/housing/host': {
+      id: '/housing/host'
+      path: '/housing/host'
+      fullPath: '/housing/host'
+      preLoaderRoute: typeof HousingHostRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/housing/invite': {
+      id: '/housing/invite'
+      path: '/housing/invite'
+      fullPath: '/housing/invite'
+      preLoaderRoute: typeof HousingInviteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/housing/map': {
+      id: '/housing/map'
+      path: '/housing/map'
+      fullPath: '/housing/map'
+      preLoaderRoute: typeof HousingMapRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/housing/reservation': {
+      id: '/housing/reservation'
+      path: '/housing/reservation'
+      fullPath: '/housing/reservation'
+      preLoaderRoute: typeof HousingReservationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/housing/safety': {
+      id: '/housing/safety'
+      path: '/housing/safety'
+      fullPath: '/housing/safety'
+      preLoaderRoute: typeof HousingSafetyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/housing/search': {
+      id: '/housing/search'
+      path: '/housing/search'
+      fullPath: '/housing/search'
+      preLoaderRoute: typeof HousingSearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/housing/trips': {
+      id: '/housing/trips'
+      path: '/housing/trips'
+      fullPath: '/housing/trips'
+      preLoaderRoute: typeof HousingTripsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/housing/wishlist': {
+      id: '/housing/wishlist'
+      path: '/housing/wishlist'
+      fullPath: '/housing/wishlist'
+      preLoaderRoute: typeof HousingWishlistRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/membership/billing': {
+      id: '/membership/billing'
+      path: '/billing'
+      fullPath: '/membership/billing'
+      preLoaderRoute: typeof MembershipBillingRouteImport
+      parentRoute: typeof MembershipRoute
+    }
+    '/membership/upgrade': {
+      id: '/membership/upgrade'
+      path: '/upgrade'
+      fullPath: '/membership/upgrade'
+      preLoaderRoute: typeof MembershipUpgradeRouteImport
+      parentRoute: typeof MembershipRoute
+    }
+    '/messages/': {
+      id: '/messages/'
+      path: '/messages'
+      fullPath: '/messages/'
+      preLoaderRoute: typeof MessagesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/messages/contacts': {
+      id: '/messages/contacts'
+      path: '/messages/contacts'
+      fullPath: '/messages/contacts'
+      preLoaderRoute: typeof MessagesContactsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/messages/new': {
+      id: '/messages/new'
+      path: '/messages/new'
+      fullPath: '/messages/new'
+      preLoaderRoute: typeof MessagesNewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/messages/requests': {
+      id: '/messages/requests'
+      path: '/messages/requests'
+      fullPath: '/messages/requests'
+      preLoaderRoute: typeof MessagesRequestsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/messages/search': {
+      id: '/messages/search'
+      path: '/messages/search'
+      fullPath: '/messages/search'
+      preLoaderRoute: typeof MessagesSearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/messages/settings': {
+      id: '/messages/settings'
+      path: '/messages/settings'
+      fullPath: '/messages/settings'
+      preLoaderRoute: typeof MessagesSettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/onboarding/': {
+      id: '/onboarding/'
+      path: '/'
+      fullPath: '/onboarding/'
+      preLoaderRoute: typeof OnboardingIndexRouteImport
+      parentRoute: typeof OnboardingRoute
+    }
+    '/profile/': {
+      id: '/profile/'
+      path: '/profile'
+      fullPath: '/profile/'
+      preLoaderRoute: typeof ProfileIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile/activity': {
+      id: '/profile/activity'
+      path: '/profile/activity'
+      fullPath: '/profile/activity'
+      preLoaderRoute: typeof ProfileActivityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile/analytics': {
+      id: '/profile/analytics'
+      path: '/profile/analytics'
+      fullPath: '/profile/analytics'
+      preLoaderRoute: typeof ProfileAnalyticsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile/bookings': {
+      id: '/profile/bookings'
+      path: '/profile/bookings'
+      fullPath: '/profile/bookings'
+      preLoaderRoute: typeof ProfileBookingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile/edit': {
+      id: '/profile/edit'
+      path: '/profile/edit'
+      fullPath: '/profile/edit'
+      preLoaderRoute: typeof ProfileEditRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile/followers': {
+      id: '/profile/followers'
+      path: '/profile/followers'
+      fullPath: '/profile/followers'
+      preLoaderRoute: typeof ProfileFollowersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile/following': {
+      id: '/profile/following'
+      path: '/profile/following'
+      fullPath: '/profile/following'
+      preLoaderRoute: typeof ProfileFollowingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile/history': {
+      id: '/profile/history'
+      path: '/profile/history'
+      fullPath: '/profile/history'
+      preLoaderRoute: typeof ProfileHistoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile/orders': {
+      id: '/profile/orders'
+      path: '/profile/orders'
+      fullPath: '/profile/orders'
+      preLoaderRoute: typeof ProfileOrdersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile/qrcode': {
+      id: '/profile/qrcode'
+      path: '/profile/qrcode'
+      fullPath: '/profile/qrcode'
+      preLoaderRoute: typeof ProfileQrcodeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile/saved': {
+      id: '/profile/saved'
+      path: '/profile/saved'
+      fullPath: '/profile/saved'
+      preLoaderRoute: typeof ProfileSavedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile/settings': {
+      id: '/profile/settings'
+      path: '/profile/settings'
+      fullPath: '/profile/settings'
+      preLoaderRoute: typeof ProfileSettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile/tagged': {
+      id: '/profile/tagged'
+      path: '/profile/tagged'
+      fullPath: '/profile/tagged'
+      preLoaderRoute: typeof ProfileTaggedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile/wallet': {
+      id: '/profile/wallet'
+      path: '/profile/wallet'
+      fullPath: '/profile/wallet'
+      preLoaderRoute: typeof ProfileWalletRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/search/results': {
+      id: '/search/results'
+      path: '/results'
+      fullPath: '/search/results'
+      preLoaderRoute: typeof SearchResultsRouteImport
+      parentRoute: typeof SearchRoute
+    }
+    '/creator/video/$id': {
+      id: '/creator/video/$id'
+      path: '/creator/video/$id'
+      fullPath: '/creator/video/$id'
+      preLoaderRoute: typeof CreatorVideoIdRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/discover/board/$id': {
@@ -1722,12 +1805,194 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DiscoverBoardIdRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/creator/video/$id': {
-      id: '/creator/video/$id'
-      path: '/creator/video/$id'
-      fullPath: '/creator/video/$id'
-      preLoaderRoute: typeof CreatorVideoIdRouteImport
+    '/discover/pin/$id': {
+      id: '/discover/pin/$id'
+      path: '/discover/pin/$id'
+      fullPath: '/discover/pin/$id'
+      preLoaderRoute: typeof DiscoverPinIdRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/discover/related/$id': {
+      id: '/discover/related/$id'
+      path: '/discover/related/$id'
+      fullPath: '/discover/related/$id'
+      preLoaderRoute: typeof DiscoverRelatedIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/discover/save-modal/$id': {
+      id: '/discover/save-modal/$id'
+      path: '/discover/save-modal/$id'
+      fullPath: '/discover/save-modal/$id'
+      preLoaderRoute: typeof DiscoverSaveModalIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/discover/shop/$id': {
+      id: '/discover/shop/$id'
+      path: '/discover/shop/$id'
+      fullPath: '/discover/shop/$id'
+      preLoaderRoute: typeof DiscoverShopIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/home/comments/$id': {
+      id: '/home/comments/$id'
+      path: '/home/comments/$id'
+      fullPath: '/home/comments/$id'
+      preLoaderRoute: typeof HomeCommentsIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/home/hashtag/$id': {
+      id: '/home/hashtag/$id'
+      path: '/home/hashtag/$id'
+      fullPath: '/home/hashtag/$id'
+      preLoaderRoute: typeof HomeHashtagIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/home/share/$id': {
+      id: '/home/share/$id'
+      path: '/home/share/$id'
+      fullPath: '/home/share/$id'
+      preLoaderRoute: typeof HomeShareIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/home/sound/$id': {
+      id: '/home/sound/$id'
+      path: '/home/sound/$id'
+      fullPath: '/home/sound/$id'
+      preLoaderRoute: typeof HomeSoundIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/housing/book/$id': {
+      id: '/housing/book/$id'
+      path: '/housing/book/$id'
+      fullPath: '/housing/book/$id'
+      preLoaderRoute: typeof HousingBookIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/housing/checkout/$id': {
+      id: '/housing/checkout/$id'
+      path: '/housing/checkout/$id'
+      fullPath: '/housing/checkout/$id'
+      preLoaderRoute: typeof HousingCheckoutIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/housing/dates/$id': {
+      id: '/housing/dates/$id'
+      path: '/housing/dates/$id'
+      fullPath: '/housing/dates/$id'
+      preLoaderRoute: typeof HousingDatesIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/housing/host/analytics': {
+      id: '/housing/host/analytics'
+      path: '/analytics'
+      fullPath: '/housing/host/analytics'
+      preLoaderRoute: typeof HousingHostAnalyticsRouteImport
+      parentRoute: typeof HousingHostRoute
+    }
+    '/housing/host/calendar': {
+      id: '/housing/host/calendar'
+      path: '/calendar'
+      fullPath: '/housing/host/calendar'
+      preLoaderRoute: typeof HousingHostCalendarRouteImport
+      parentRoute: typeof HousingHostRoute
+    }
+    '/housing/host/dashboard': {
+      id: '/housing/host/dashboard'
+      path: '/dashboard'
+      fullPath: '/housing/host/dashboard'
+      preLoaderRoute: typeof HousingHostDashboardRouteImport
+      parentRoute: typeof HousingHostRoute
+    }
+    '/housing/host/listings': {
+      id: '/housing/host/listings'
+      path: '/listings'
+      fullPath: '/housing/host/listings'
+      preLoaderRoute: typeof HousingHostListingsRouteImport
+      parentRoute: typeof HousingHostRoute
+    }
+    '/housing/host/payouts': {
+      id: '/housing/host/payouts'
+      path: '/payouts'
+      fullPath: '/housing/host/payouts'
+      preLoaderRoute: typeof HousingHostPayoutsRouteImport
+      parentRoute: typeof HousingHostRoute
+    }
+    '/housing/host/reservations': {
+      id: '/housing/host/reservations'
+      path: '/reservations'
+      fullPath: '/housing/host/reservations'
+      preLoaderRoute: typeof HousingHostReservationsRouteImport
+      parentRoute: typeof HousingHostRoute
+    }
+    '/housing/listing/$id': {
+      id: '/housing/listing/$id'
+      path: '/housing/listing/$id'
+      fullPath: '/housing/listing/$id'
+      preLoaderRoute: typeof HousingListingIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/messages/call/$id': {
+      id: '/messages/call/$id'
+      path: '/messages/call/$id'
+      fullPath: '/messages/call/$id'
+      preLoaderRoute: typeof MessagesCallIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/messages/chat/$id': {
+      id: '/messages/chat/$id'
+      path: '/messages/chat/$id'
+      fullPath: '/messages/chat/$id'
+      preLoaderRoute: typeof MessagesChatIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/messages/media/$id': {
+      id: '/messages/media/$id'
+      path: '/messages/media/$id'
+      fullPath: '/messages/media/$id'
+      preLoaderRoute: typeof MessagesMediaIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile/post/$id': {
+      id: '/profile/post/$id'
+      path: '/profile/post/$id'
+      fullPath: '/profile/post/$id'
+      preLoaderRoute: typeof ProfilePostIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile/reels/$id': {
+      id: '/profile/reels/$id'
+      path: '/profile/reels/$id'
+      fullPath: '/profile/reels/$id'
+      preLoaderRoute: typeof ProfileReelsIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile/story/$id': {
+      id: '/profile/story/$id'
+      path: '/profile/story/$id'
+      fullPath: '/profile/story/$id'
+      preLoaderRoute: typeof ProfileStoryIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile/user/$id': {
+      id: '/profile/user/$id'
+      path: '/profile/user/$id'
+      fullPath: '/profile/user/$id'
+      preLoaderRoute: typeof ProfileUserIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/housing/checkout/$id/success': {
+      id: '/housing/checkout/$id/success'
+      path: '/success'
+      fullPath: '/housing/checkout/$id/success'
+      preLoaderRoute: typeof HousingCheckoutIdSuccessRouteImport
+      parentRoute: typeof HousingCheckoutIdRoute
+    }
+    '/housing/listing/$id/photos': {
+      id: '/housing/listing/$id/photos'
+      path: '/photos'
+      fullPath: '/housing/listing/$id/photos'
+      preLoaderRoute: typeof HousingListingIdPhotosRouteImport
+      parentRoute: typeof HousingListingIdRoute
     }
     '/housing/listing/$id/reviews': {
       id: '/housing/listing/$id/reviews'
@@ -1736,12 +2001,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof HousingListingIdReviewsRouteImport
       parentRoute: typeof HousingListingIdRoute
     }
-    '/housing/listing/$id/photos': {
-      id: '/housing/listing/$id/photos'
-      path: '/photos'
-      fullPath: '/housing/listing/$id/photos'
-      preLoaderRoute: typeof HousingListingIdPhotosRouteImport
-      parentRoute: typeof HousingListingIdRoute
+    '/housing/reviews/write/$bookingId': {
+      id: '/housing/reviews/write/$bookingId'
+      path: '/housing/reviews/write/$bookingId'
+      fullPath: '/housing/reviews/write/$bookingId'
+      preLoaderRoute: typeof HousingReviewsWriteBookingIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/housing/host/listings/$id/edit': {
+      id: '/housing/host/listings/$id/edit'
+      path: '/$id/edit'
+      fullPath: '/housing/host/listings/$id/edit'
+      preLoaderRoute: typeof HousingHostListingsIdEditRouteImport
+      parentRoute: typeof HousingHostListingsRoute
     }
   }
 }
@@ -1786,6 +2058,18 @@ const MembershipRouteWithChildren = MembershipRoute._addFileChildren(
   MembershipRouteChildren,
 )
 
+interface OnboardingRouteChildren {
+  OnboardingIndexRoute: typeof OnboardingIndexRoute
+}
+
+const OnboardingRouteChildren: OnboardingRouteChildren = {
+  OnboardingIndexRoute: OnboardingIndexRoute,
+}
+
+const OnboardingRouteWithChildren = OnboardingRoute._addFileChildren(
+  OnboardingRouteChildren,
+)
+
 interface SearchRouteChildren {
   SearchResultsRoute: typeof SearchResultsRoute
 }
@@ -1796,6 +2080,50 @@ const SearchRouteChildren: SearchRouteChildren = {
 
 const SearchRouteWithChildren =
   SearchRoute._addFileChildren(SearchRouteChildren)
+
+interface HousingHostListingsRouteChildren {
+  HousingHostListingsIdEditRoute: typeof HousingHostListingsIdEditRoute
+}
+
+const HousingHostListingsRouteChildren: HousingHostListingsRouteChildren = {
+  HousingHostListingsIdEditRoute: HousingHostListingsIdEditRoute,
+}
+
+const HousingHostListingsRouteWithChildren =
+  HousingHostListingsRoute._addFileChildren(HousingHostListingsRouteChildren)
+
+interface HousingHostRouteChildren {
+  HousingHostAnalyticsRoute: typeof HousingHostAnalyticsRoute
+  HousingHostCalendarRoute: typeof HousingHostCalendarRoute
+  HousingHostDashboardRoute: typeof HousingHostDashboardRoute
+  HousingHostListingsRoute: typeof HousingHostListingsRouteWithChildren
+  HousingHostPayoutsRoute: typeof HousingHostPayoutsRoute
+  HousingHostReservationsRoute: typeof HousingHostReservationsRoute
+}
+
+const HousingHostRouteChildren: HousingHostRouteChildren = {
+  HousingHostAnalyticsRoute: HousingHostAnalyticsRoute,
+  HousingHostCalendarRoute: HousingHostCalendarRoute,
+  HousingHostDashboardRoute: HousingHostDashboardRoute,
+  HousingHostListingsRoute: HousingHostListingsRouteWithChildren,
+  HousingHostPayoutsRoute: HousingHostPayoutsRoute,
+  HousingHostReservationsRoute: HousingHostReservationsRoute,
+}
+
+const HousingHostRouteWithChildren = HousingHostRoute._addFileChildren(
+  HousingHostRouteChildren,
+)
+
+interface HousingCheckoutIdRouteChildren {
+  HousingCheckoutIdSuccessRoute: typeof HousingCheckoutIdSuccessRoute
+}
+
+const HousingCheckoutIdRouteChildren: HousingCheckoutIdRouteChildren = {
+  HousingCheckoutIdSuccessRoute: HousingCheckoutIdSuccessRoute,
+}
+
+const HousingCheckoutIdRouteWithChildren =
+  HousingCheckoutIdRoute._addFileChildren(HousingCheckoutIdRouteChildren)
 
 interface HousingListingIdRouteChildren {
   HousingListingIdPhotosRoute: typeof HousingListingIdPhotosRoute
@@ -1818,7 +2146,7 @@ const rootRouteChildren: RootRouteChildren = {
   MapRoute: MapRoute,
   MembershipRoute: MembershipRouteWithChildren,
   NotificationsRoute: NotificationsRoute,
-  OnboardingRoute: OnboardingRoute,
+  OnboardingRoute: OnboardingRouteWithChildren,
   PaymentsRoute: PaymentsRoute,
   SavedRoute: SavedRoute,
   SearchRoute: SearchRouteWithChildren,
@@ -1831,6 +2159,7 @@ const rootRouteChildren: RootRouteChildren = {
   DiscoverFollowingRoute: DiscoverFollowingRoute,
   DiscoverSearchRoute: DiscoverSearchRoute,
   HomeActivityRoute: HomeActivityRoute,
+  HomeBookedRoute: HomeBookedRoute,
   HomeFollowingRoute: HomeFollowingRoute,
   HomeLiveRoute: HomeLiveRoute,
   HomeSearchRoute: HomeSearchRoute,
@@ -1838,10 +2167,12 @@ const rootRouteChildren: RootRouteChildren = {
   HousingBookingRoute: HousingBookingRoute,
   HousingConfirmationRoute: HousingConfirmationRoute,
   HousingExperiencesRoute: HousingExperiencesRoute,
-  HousingFiltersRoute: HousingFiltersRoute,
-  HousingHostRoute: HousingHostRoute,
+  HousingHelpRoute: HousingHelpRoute,
+  HousingHostRoute: HousingHostRouteWithChildren,
+  HousingInviteRoute: HousingInviteRoute,
   HousingMapRoute: HousingMapRoute,
   HousingReservationRoute: HousingReservationRoute,
+  HousingSafetyRoute: HousingSafetyRoute,
   HousingSearchRoute: HousingSearchRoute,
   HousingTripsRoute: HousingTripsRoute,
   HousingWishlistRoute: HousingWishlistRoute,
@@ -1879,6 +2210,7 @@ const rootRouteChildren: RootRouteChildren = {
   HomeShareIdRoute: HomeShareIdRoute,
   HomeSoundIdRoute: HomeSoundIdRoute,
   HousingBookIdRoute: HousingBookIdRoute,
+  HousingCheckoutIdRoute: HousingCheckoutIdRouteWithChildren,
   HousingDatesIdRoute: HousingDatesIdRoute,
   HousingListingIdRoute: HousingListingIdRouteWithChildren,
   MessagesCallIdRoute: MessagesCallIdRoute,
@@ -1888,17 +2220,8 @@ const rootRouteChildren: RootRouteChildren = {
   ProfileReelsIdRoute: ProfileReelsIdRoute,
   ProfileStoryIdRoute: ProfileStoryIdRoute,
   ProfileUserIdRoute: ProfileUserIdRoute,
+  HousingReviewsWriteBookingIdRoute: HousingReviewsWriteBookingIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
