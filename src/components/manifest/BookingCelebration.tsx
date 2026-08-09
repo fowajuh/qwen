@@ -74,7 +74,7 @@ export function BookingCelebration({
   }, [isFirstBooking, addXP, unlockBadge]);
 
   const handleShare = () => {
-    const shareText = `🎉 Just booked my trip to ${destination}! Checking in ${new Date(checkInDate).toLocaleDateString()}.`;
+    const shareText = `Just booked my trip to ${destination}! Checking in ${new Date(checkInDate).toLocaleDateString()}.`;
     
     if (navigator.share) {
       navigator.share({

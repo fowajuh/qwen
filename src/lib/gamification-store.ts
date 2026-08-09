@@ -88,27 +88,27 @@ export const LEVELS: LevelConfig[] = [
 
 export const BADGE_LIBRARY: Omit<Badge, "unlocked" | "unlockedAt" | "progress">[] = [
   // Milestone Badges
-  { id: "first_step", name: "First Step", description: "Complete your first booking", category: "milestone", icon: "🎉" },
-  { id: "weekend_warrior", name: "Weekend Warrior", description: "Book 3 weekend trips in one month", category: "milestone", icon: "🌅" },
-  { id: "century_club", name: "Century Club", description: "Book 100 nights total", category: "milestone", icon: "💯" },
-  { id: "double_trouble", name: "Double Trouble", description: "Book 2 stays in one month", category: "milestone", icon: "✌️" },
+  { id: "first_step", name: "First Step", description: "Complete your first booking", category: "milestone", icon: "sparkles" },
+  { id: "weekend_warrior", name: "Weekend Warrior", description: "Book 3 weekend trips in one month", category: "milestone", icon: "sunrise" },
+  { id: "century_club", name: "Century Club", description: "Book 100 nights total", category: "milestone", icon: "award" },
+  { id: "double_trouble", name: "Double Trouble", description: "Book 2 stays in one month", category: "milestone", icon: "zap" },
   
   // Category Badges
-  { id: "beach_bum", name: "Beach Bum", description: "Stay at 3 beachfront properties", category: "category", icon: "🏖️" },
-  { id: "mountain_king", name: "Mountain King", description: "Stay at 3 mountain properties", category: "category", icon: "🏔️" },
-  { id: "urbanite", name: "Urbanite", description: "Stay at 5 city properties", category: "category", icon: "🏙️" },
-  { id: "digital_nomad", name: "Digital Nomad", description: "Book 3 remote-work friendly stays", category: "category", icon: "💻" },
+  { id: "beach_bum", name: "Beach Bum", description: "Stay at 3 beachfront properties", category: "category", icon: "waves" },
+  { id: "mountain_king", name: "Mountain King", description: "Stay at 3 mountain properties", category: "category", icon: "mountain" },
+  { id: "urbanite", name: "Urbanite", description: "Stay at 5 city properties", category: "category", icon: "building-2" },
+  { id: "digital_nomad", name: "Digital Nomad", description: "Book 3 remote-work friendly stays", category: "category", icon: "laptop" },
   
   // Social Badges
-  { id: "influencer", name: "Influencer", description: "Share 10 listings that get clicks", category: "social", icon: "📱" },
-  { id: "ambassador", name: "Ambassador", description: "Refer 5 friends who book", category: "social", icon: "🤝" },
-  { id: "storyteller", name: "Storyteller", description: "Write 10 detailed reviews", category: "social", icon: "📖" },
-  { id: "social_butterfly", name: "Social Butterfly", description: "Refer 5 friends", category: "social", icon: "🦋" },
+  { id: "influencer", name: "Influencer", description: "Share 10 listings that get clicks", category: "social", icon: "share-2" },
+  { id: "ambassador", name: "Ambassador", description: "Refer 5 friends who book", category: "social", icon: "users" },
+  { id: "storyteller", name: "Storyteller", description: "Write 10 detailed reviews", category: "social", icon: "pen-tool" },
+  { id: "social_butterfly", name: "Social Butterfly", description: "Refer 5 friends", category: "social", icon: "heart-handshake" },
   
   // Host Badges
-  { id: "rising_star", name: "Rising Star", description: "Complete your first 5 bookings as a host", category: "host", icon: "⭐" },
-  { id: "superhost", name: "Superhost", description: "Maintain 4.8+ rating for a year", category: "host", icon: "🏆" },
-  { id: "elite_host", name: "Elite Host", description: "50+ bookings with 0 cancellations", category: "host", icon: "👑" },
+  { id: "rising_star", name: "Rising Star", description: "Complete your first 5 bookings as a host", category: "host", icon: "star" },
+  { id: "superhost", name: "Superhost", description: "Maintain 4.8+ rating for a year", category: "host", icon: "medal" },
+  { id: "elite_host", name: "Elite Host", description: "50+ bookings with 0 cancellations", category: "host", icon: "crown" },
 ];
 
 export const DEFAULT_DAILY_QUESTS: DailyQuest[] = [
