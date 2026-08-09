@@ -148,7 +148,7 @@ function Card({
           <div className="absolute inset-0 bg-gradient-to-t from-departure-navy/95 via-departure-navy/40 to-transparent" />
         </ClientOnly>
       ) : (
-        /* No image or map: use a rich gradient background */}
+        // No image or map: use a rich gradient background
         <div className="absolute inset-0 bg-gradient-to-br from-departure-navy via-[#1a3058] to-horizon-teal/60" />
       )}
 

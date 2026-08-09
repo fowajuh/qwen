@@ -7,12 +7,12 @@ dist/
 build/
 target/
 
-# Environment
+# Environment variables
 .env
 .env.local
 .env.*
 
-# Cache
+# Cache directories
 .cache/
 .node_cache/
 .npm/
@@ -30,50 +30,25 @@ Thumbs.db
 .idea/
 *.swp
 *.swo
-*.tmp
 
-# Python specific (if applicable)
+# Python specific
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
 .Python
-venv/
-.venv/
-.eggs/
-.egg-info/
-*.egg-info/
+*.so
 
 # Coverage reports
 coverage/
 htmlcov/
 .coverage
 
-# Testing
+# MyPy cache
 .mypy_cache/
 .pytest_cache/
-.nyc_output/
-coverage/lcov-report/
-
-# Distribution / packaging
-*.tar.gz
-*.whl
-*.egg
-
-# Local configuration
-.env.local
-.env.dev
-.env.production
-
-# IDE specific
-.vscode/settings.json
-.idea/workspace.xml
-*.swp
-*.swo
 
 # Temporary files
 *.tmp
-*~
-.DS_Store
-Thumbs.db
+*.temp
 ```
