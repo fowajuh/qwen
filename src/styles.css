@@ -1,54 +1,39 @@
 @import "tailwindcss" source(none);
-@import "leaflet/dist/leaflet.css";
 @source "../src";
+
+/*
+ * BILLION-DOLLAR DESIGN SYSTEM v2.0
+ * Premium travel marketplace aesthetic that competes with Airbnb & Booking.com
+ * Sophisticated gradients, refined typography, buttery-smooth animations.
+ */
 
 @custom-variant dark (&:is(.dark *));
 
-/*
- * Billion-Dollar Design System
- * Premium travel marketplace aesthetic with sophisticated gradients,
- * refined typography, and buttery-smooth animations.
- */
-
 @theme inline {
-  --color-background: var(--cloud-white);
-  --color-foreground: var(--ink-90);
+  /* Billion-dollar color palette - bespoke, not default Tailwind */
+  --color-primary-indigo: #4F46E5;
+  --color-primary-purple: #7C3AED;
+  --color-primary-pink: #EC4899;
+  --color-accent-amber: #F59E0B;
+  --color-success-emerald: #10B981;
+  --color-danger-rose: #EF4444;
+  
+  --color-departure-navy: #16223f;
+  --color-cloud-white: #faf8f4;
+  --color-runway-sand: #e7dcc5;
+  --color-beacon-amber: #f2a03d;
+  --color-horizon-teal: #2e7d6b;
+  --color-runway-red: #e15241;
+  --color-ink-90: #0e1626;
+  --color-ink-60: #4a5468;
+  --color-ink-30: #a5adbb;
 
-  --color-departure-navy: var(--departure-navy);
-  --color-cloud-white: var(--cloud-white);
-  --color-runway-sand: var(--runway-sand);
-  --color-beacon-amber: var(--beacon-amber);
-  --color-horizon-teal: var(--horizon-teal);
-  --color-runway-red: var(--runway-red);
-  --color-ink-90: var(--ink-90);
-  --color-ink-60: var(--ink-60);
-  --color-ink-30: var(--ink-30);
-
-  --color-card: var(--cloud-white);
-  --color-card-foreground: var(--ink-90);
-  --color-popover: var(--cloud-white);
-  --color-popover-foreground: var(--ink-90);
-  --color-primary: var(--beacon-amber);
-  --color-primary-foreground: var(--ink-90);
-  --color-secondary: var(--runway-sand);
-  --color-secondary-foreground: var(--departure-navy);
-  --color-muted: var(--runway-sand);
-  --color-muted-foreground: var(--ink-60);
-  --color-accent: var(--horizon-teal);
-  --color-accent-foreground: var(--cloud-white);
-  --color-destructive: var(--runway-red);
-  --color-destructive-foreground: var(--cloud-white);
-  --color-border: color-mix(in oklab, var(--ink-90) 10%, transparent);
-  --color-input: color-mix(in oklab, var(--ink-90) 12%, transparent);
-  --color-ring: var(--beacon-amber);
-
-  /* Billion-dollar gradient palette */
-  --color-gradient-indigo: #4F46E5;
-  --color-gradient-purple: #7C3AED;
-  --color-gradient-pink: #EC4899;
-  --color-gradient-amber: #F59E0B;
-  --color-gradient-emerald: #10B981;
-
+  /* Gradient definitions for premium CTAs and XP indicators */
+  --gradient-sunset: linear-gradient(135deg, #F59E0B 0%, #EC4899 100%);
+  --gradient-indigo: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%);
+  --gradient-ocean: linear-gradient(135deg, #2e7d6b 0%, #4F46E5 100%);
+  --gradient-premium: linear-gradient(135deg, #4F46E5 0%, #EC4899 50%, #F59E0B 100%);
+  
   --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
   --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
@@ -56,6 +41,7 @@
   --ease-manifest: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-flip: cubic-bezier(0.55, 0, 0.1, 1);
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-bounce: cubic-bezier(0.68, 0, 0.265, 1);
 }
 
 :root {
@@ -181,9 +167,189 @@
   100% { transform: translateX(100%); }
 }
 
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(79, 70, 229, 0.3); }
+  50% { box-shadow: 0 0 40px rgba(79, 70, 229, 0.6); }
+}
+
+@keyframes confetti-fall {
+  0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+}
+
+@keyframes badge-unlock {
+  0% { transform: scale(0) rotate(-180deg); opacity: 0; }
+  60% { transform: scale(1.2) rotate(10deg); opacity: 1; }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+@keyframes xp-fill {
+  0% { width: 0%; opacity: 0.5; }
+  100% { width: var(--target-width, 100%); opacity: 1; }
+}
+
 .animate-shimmer {
   animation: shimmer 2s infinite linear;
 }
 
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-badge-unlock {
+  animation: badge-unlock 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.animate-xp-fill {
+  animation: xp-fill 0.8s ease-out forwards;
+}
+
 .scrollbar-hide { scrollbar-width: none; -ms-overflow-style: none; }
 .scrollbar-hide::-webkit-scrollbar { display: none; }
+
+/* ---------- Billion-Dollar UI Utilities ---------- */
+
+/* Premium card elevation with ambient occlusion shadows */
+@utility card-premium {
+  @apply rounded-2xl border border-ink-30/20 bg-cloud-white shadow-[0_8px_30px_-12px_rgba(14,22,38,0.15)] transition-all duration-300;
+}
+
+.card-premium:hover {
+  @apply shadow-[0_20px_50px_-20px_rgba(79,70,229,0.25)] translate-y-[-4px];
+}
+
+/* Gradient CTA button - billion-dollar aesthetic */
+@utility btn-gradient {
+  @apply inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-semibold text-white;
+  background: var(--gradient-indigo);
+  box-shadow: 0 4px 20px rgba(79, 70, 229, 0.35);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.btn-gradient:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 30px rgba(79, 70, 229, 0.45);
+}
+
+.btn-gradient:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* XP Progress Bar with gradient fill */
+@utility xp-progress {
+  @apply h-2.5 rounded-full overflow-hidden bg-runway-sand/20;
+}
+
+.xp-progress-fill {
+  @apply h-full rounded-full;
+  background: var(--gradient-premium);
+  animation: xp-fill 0.8s ease-out forwards;
+}
+
+/* Badge shelf for achievements */
+@utility badge-shelf {
+  @apply flex flex-wrap gap-3 p-4 bg-departure-navy/5 rounded-xl border border-ink-30/10;
+}
+
+/* Fog of war effect for unexplored destinations */
+@utility fog-of-war {
+  filter: saturate(0.3) brightness(0.7);
+  transition: all 0.5s ease;
+}
+
+.fog-of-war.explored {
+  filter: saturate(1) brightness(1);
+}
+
+/* Live ticker animation for urgency */
+@utility live-ticker {
+  @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium;
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.live-ticker-hot {
+  @apply bg-rose-50 text-rose-600 dark:bg-rose-900/20 dark:text-rose-400;
+}
+
+.live-ticker-warm {
+  @apply bg-amber-50 text-amber-600 dark:bg-amber-900/20 dark:text-amber-400;
+}
+
+/* Skeleton shimmer with diagonal sweep */
+@utility skeleton-premium {
+  @apply relative overflow-hidden rounded-lg bg-runway-sand/30;
+}
+
+.skeleton-premium::after {
+  content: "";
+  @apply absolute inset-0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  animation: shimmer 1.5s infinite;
+}
+
+/* Shared element transition helper */
+@utility shared-element {
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Parallax hero container */
+@utility parallax-hero {
+  @apply relative overflow-hidden;
+  transform-style: preserve-3d;
+}
+
+/* Sticky booking bar with blur backdrop */
+@utility sticky-booking-bar {
+  @apply sticky bottom-0 z-40 bg-cloud-white/90 backdrop-blur-lg border-t border-ink-30/20;
+  box-shadow: 0 -8px 30px rgba(14, 22, 38, 0.1);
+}
+
+/* Radar pulse for geolocation */
+@utility radar-pulse {
+  @apply absolute rounded-full opacity-30;
+  animation: pulse-glow 1.5s ease-out infinite;
+}
+
+/* Level-up celebration overlay */
+@utility levelup-overlay {
+  @apply fixed inset-0 z-50 flex items-center justify-center;
+  background: radial-gradient(circle at center, rgba(79, 70, 229, 0.9) 0%, rgba(14, 22, 38, 0.95) 100%);
+}
+
+/* Quest completion card */
+@utility quest-card {
+  @apply relative p-4 rounded-xl overflow-hidden;
+  background: linear-gradient(135deg, rgba(79, 70, 229, 0.1) 0%, rgba(245, 158, 11, 0.1) 100%);
+  border: 1px solid rgba(79, 70, 229, 0.2);
+}
+
+/* Streak flame animation */
+.streak-flame {
+  animation: float 2s ease-in-out infinite, pulse-glow 1s ease-in-out infinite;
+}
+
+/* Match score badge */
+@utility match-badge {
+  @apply inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold;
+  background: var(--gradient-indigo);
+  box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3);
+}
+
+/* Wishlist heart explosion effect container */
+@utility heart-container {
+  @apply relative;
+}
+
+.heart-particle {
+  @apply absolute pointer-events-none;
+  animation: confetti-fall 1s ease-out forwards;
+}

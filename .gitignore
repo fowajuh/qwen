@@ -1,35 +1,79 @@
 ```
-# Build artifacts
-backend/dist/
-dist/
-build/
-*.js
-
 # Dependencies
 node_modules/
+
+# Build artifacts
+dist/
+build/
+target/
 
 # Environment
 .env
 .env.local
-*.env.*
+.env.*
 
-# Editors
-.vscode/
-.idea/
+# Cache
+.cache/
+.node_cache/
+.npm/
+.yarn/
 
 # Logs
 *.log
 
-# Python
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*.tmp
+
+# Python specific (if applicable)
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
+.Python
+venv/
+.venv/
+.eggs/
+.egg-info/
+*.egg-info/
 
-# TypeScript
-*.tsbuildinfo
+# Coverage reports
+coverage/
+htmlcov/
+.coverage
 
-# OS
+# Testing
+.mypy_cache/
+.pytest_cache/
+.nyc_output/
+coverage/lcov-report/
+
+# Distribution / packaging
+*.tar.gz
+*.whl
+*.egg
+
+# Local configuration
+.env.local
+.env.dev
+.env.production
+
+# IDE specific
+.vscode/settings.json
+.idea/workspace.xml
+*.swp
+*.swo
+
+# Temporary files
+*.tmp
+*~
 .DS_Store
 Thumbs.db
 ```

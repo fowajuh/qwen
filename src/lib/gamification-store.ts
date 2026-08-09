@@ -27,6 +27,58 @@ export interface Badge {
   target?: number;
 }
 
+// XP Action Types for awardXP function
+export type XPAction = 
+  | "open_app_daily"
+  | "complete_profile"
+  | "save_listing"
+  | "share_listing"
+  | "book_listing"
+  | "first_booking"
+  | "check_in"
+  | "leave_review"
+  | "photo_review_bonus"
+  | "refer_friend_books"
+  | "complete_daily_quest"
+  | "complete_seasonal_quest"
+  | "maintain_7day_streak"
+  | "book_new_category";
+
+// XP Rewards Table (defined early to avoid hoisting issues)
+export const XP_REWARDS = {
+  openAppDaily: 10,
+  completeProfile: 50,
+  saveListing: 5,
+  shareListing: 15,
+  firstBooking: 200,
+  subsequentBooking: 100,
+  checkIn: 100,
+  leaveReview: 50,
+  photoReviewBonus: 25,
+  referFriendBooks: 300,
+  completeDailyQuest: 30,
+  completeSeasonalQuest: 500,
+  maintain7DayStreak: 50,
+  bookNewCategory: 75,
+};
+
+const XP_ACTION_REWARDS: Record<XPAction, number> = {
+  open_app_daily: XP_REWARDS.openAppDaily,
+  complete_profile: XP_REWARDS.completeProfile,
+  save_listing: XP_REWARDS.saveListing,
+  share_listing: XP_REWARDS.shareListing,
+  book_listing: XP_REWARDS.subsequentBooking,
+  first_booking: XP_REWARDS.firstBooking,
+  check_in: XP_REWARDS.checkIn,
+  leave_review: XP_REWARDS.leaveReview,
+  photo_review_bonus: XP_REWARDS.photoReviewBonus,
+  refer_friend_books: XP_REWARDS.referFriendBooks,
+  complete_daily_quest: XP_REWARDS.completeDailyQuest,
+  complete_seasonal_quest: XP_REWARDS.completeSeasonalQuest,
+  maintain_7day_streak: XP_REWARDS.maintain7DayStreak,
+  book_new_category: XP_REWARDS.bookNewCategory,
+};
+
 export interface DailyQuest {
   id: string;
   title: string;
@@ -122,24 +174,6 @@ export const SEASONAL_EVENTS = [
   { id: "winter_wonderland", name: "Winter Wonderland", startDate: "2025-12-01", endDate: "2026-02-28" },
 ];
 
-// XP Rewards Table
-export const XP_REWARDS = {
-  openAppDaily: 10,
-  completeProfile: 50,
-  saveListing: 5,
-  shareListing: 15,
-  firstBooking: 200,
-  subsequentBooking: 100,
-  checkIn: 100,
-  leaveReview: 50,
-  photoReviewBonus: 25,
-  referFriendBooks: 300,
-  completeDailyQuest: 30,
-  completeSeasonalQuest: 500,
-  maintain7DayStreak: 50,
-  bookNewCategory: 75,
-};
-
 // ============================================================================
 // STORE STATE & ACTIONS
 // ============================================================================
@@ -186,7 +220,8 @@ type GamificationState = {
   getActiveQuests: () => DailyQuest[];
 };
 
-const initialState: Omit<GamificationState, keyof Pick<GamificationState, "addXP" | "updateStat" | "incrementStat" | "unlockBadge" | "updateDailyQuest" | "claimDailyQuest" | "resetDailyQuests" | "checkDailyLogin" | "getCurrentLevel" | "getNextLevel" | "getXPToNextLevel" | "getProgressToNextLevel" | "getUnlockedBadges" | "getLockedBadges" | "getCompletedQuests" | "getActiveQuests"> = {
+// Simplified initial state type to avoid complex Pick/Omit issues
+const initialState: GamificationState = {
   totalXP: 0,
   level: 1,
   xpHistory: [],
