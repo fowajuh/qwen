@@ -1,7 +1,7 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { useMemo, useState } from "react";
-import { Compass, MoreVertical, Plane as PlaneIcon, Plus, SlidersHorizontal } from "lucide-react";
+import { useMemo, useState, useEffect } from "react";
+import { Compass, MoreVertical, Plane as PlaneIcon, Plus, SlidersHorizontal, Gift, Flame } from "lucide-react";
 import { toast } from "sonner";
 import { AppShell } from "@/components/manifest/AppShell";
 import { ManifestStub } from "@/components/manifest/ManifestStub";
@@ -16,6 +16,8 @@ import { NewTripSheet, type NewTripValues } from "@/components/manifest/NewTripS
 import { TripActionsSheet } from "@/components/manifest/TripActionsSheet";
 import { PaywallSheet } from "@/components/manifest/PaywallSheet";
 import { Sheet } from "@/components/manifest/Sheet";
+import { DailyQuestWidget, StreakCounter } from "@/components/manifest/DailyQuestWidget";
+import { LevelBadge, XPProgressBar } from "@/components/manifest/LevelBadge";
 import {
   useTrips,
   useDuplicateTrip,
@@ -25,6 +27,7 @@ import {
 } from "@/lib/queries";
 import { auth } from "@/lib/auth";
 import { useUI, FREE_TRIP_LIMIT, PLAN_LABEL } from "@/lib/store";
+import { useGamification, XP_REWARDS } from "@/lib/gamification-store";
 import type { Trip } from "@/lib/mock-data";
 import { cn } from "@/lib/utils";
 
@@ -80,6 +83,23 @@ function Dashboard() {
   const upcoming = trips.filter((t) => t.status === "upcoming");
   const me = auth.currentUser();
   const plan = useUI((s) => s.plan);
+  
+  // Gamification hooks
+  const checkDailyLogin = useGamification((state) => state.checkDailyLogin);
+  const stats = useGamification((state) => state.stats);
+  const currentStreak = useGamification((state) => state.currentStreak);
+  const totalXP = useGamification((state) => state.totalXP);
+  const level = useGamification((state) => state.level);
+  
+  // Check daily login on mount
+  useEffect(() => {
+    const result = checkDailyLogin();
+    if (result.xpEarned > 0) {
+      toast.success(`+${result.xpEarned} XP`, {
+        description: result.isNewStreak ? "Welcome aboard!" : "Daily login bonus",
+      });
+    }
+  }, []);
 
   const [deleteTarget, setDeleteTarget] = useState<{ id: string; name: string } | null>(null);
   const [burstAt, setBurstAt] = useState<number | null>(null);
@@ -160,7 +180,7 @@ function Dashboard() {
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
           className="max-w-5xl mx-auto px-5 pt-6"
         >
-          {/* Manifest header */}
+          {/* Gamified header with level badge and streak */}
           <div className="flex items-end justify-between mb-6">
             <div>
               <p className="num text-[11px] uppercase tracking-[0.24em] text-ink-60">
@@ -169,6 +189,13 @@ function Dashboard() {
               <h1 className="font-display text-4xl md:text-5xl text-departure-navy mt-1 leading-[0.95]">
                 Your Manifest
               </h1>
+              {/* Streak counter */}
+              {currentStreak > 0 && (
+                <div className="mt-2 inline-flex items-center gap-1.5 px-2 py-1 bg-runway-sand/10 rounded-full">
+                  <Flame className="w-3 h-3 text-beacon-amber" />
+                  <span className="num text-[9px] text-ink-60">{currentStreak} day streak</span>
+                </div>
+              )}
             </div>
             <div className="hidden md:block text-right">
               <p className="num text-[10px] uppercase tracking-[0.22em] text-ink-60">
@@ -184,7 +211,16 @@ function Dashboard() {
               ) : (
                 <p className="num text-sm text-ink-90">Unlimited trips</p>
               )}
+              {/* Mini XP indicator */}
+              <p className="num text-[9px] text-ink-60 mt-1">
+                Level {level} · {totalXP.toLocaleString()} XP
+              </p>
             </div>
+          </div>
+          
+          {/* Daily Quest Widget */}
+          <div className="mb-6">
+            <DailyQuestWidget />
           </div>
 
           <PerforatedDivider label={`${upcoming.length} upcoming · ${rest.length} archived`} />

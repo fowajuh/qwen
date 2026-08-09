@@ -1,15 +1,19 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { useState } from "react";
-import { Bell, ChevronRight, CreditCard, Download, Globe2, Wallet } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Bell, ChevronRight, CreditCard, Download, Globe2, Wallet, Trophy, Flame } from "lucide-react";
 import { toast } from "sonner";
 import { AppShell } from "@/components/manifest/AppShell";
 import { ManifestStub } from "@/components/manifest/ManifestStub";
 import { PerforatedDivider } from "@/components/manifest/PerforatedDivider";
 import { Sheet } from "@/components/manifest/Sheet";
+import { LevelBadge, BadgeDisplay, XPProgressBar } from "@/components/manifest/LevelBadge";
+import { DailyQuestWidget, StreakCounter } from "@/components/manifest/DailyQuestWidget";
+import { ReferralCard } from "@/components/manifest/ReferralCard";
 import { auth } from "@/lib/auth";
 import { useTrips } from "@/lib/queries";
 import { useUI, type TravelStyle } from "@/lib/store";
+import { useGamification, BADGE_LIBRARY } from "@/lib/gamification-store";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/profile")({
@@ -35,6 +39,22 @@ function Profile() {
   const { data: trips } = useTrips();
   const { preferences, setPreferences } = useUI();
   const [panel, setPanel] = useState<PanelKey>(null);
+  
+  // Gamification state
+  const checkDailyLogin = useGamification((state) => state.checkDailyLogin);
+  const stats = useGamification((state) => state.stats);
+  const badges = useGamification((state) => state.badges);
+  const currentStreak = useGamification((state) => state.currentStreak);
+  
+  // Check daily login on mount
+  useEffect(() => {
+    const result = checkDailyLogin();
+    if (result.xpEarned > 0) {
+      toast.success(`+${result.xpEarned} XP`, {
+        description: result.isNewStreak ? "Welcome aboard!" : "Daily login bonus",
+      });
+    }
+  }, []);
 
   const countries = new Set(
     (trips ?? []).flatMap((t) => t.days.flatMap((d) => d.stops.map((s) => s.country))),
@@ -67,11 +87,20 @@ function Profile() {
         <p className="num text-[11px] uppercase tracking-[0.24em] text-ink-60">Passport</p>
         <h1 className="font-display text-4xl text-departure-navy leading-[0.95] mt-1">You</h1>
 
+        {/* Gamified profile header with level badge */}
         <ManifestStub tone="navy" className="mt-6">
-          <div className="flex items-center gap-4">
-            <div className="w-16 h-16 rounded-full bg-beacon-amber text-departure-navy flex items-center justify-center font-display text-2xl">
-              {initials}
+          <div className="flex items-start gap-4">
+            {/* Level badge overlay on avatar */}
+            <div className="relative">
+              <div className="w-16 h-16 rounded-full bg-beacon-amber text-departure-navy flex items-center justify-center font-display text-2xl">
+                {initials}
+              </div>
+              {/* Mini level indicator */}
+              <div className="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center border-2 border-departure-navy">
+                <span className="num text-[9px] font-bold text-cloud-white">{stats.level}</span>
+              </div>
             </div>
+            
             <div className="flex-1">
               <p className="num text-[10px] uppercase tracking-[0.2em] text-cloud-white/70">
                 Name of holder
@@ -80,35 +109,82 @@ function Profile() {
                 {me?.email?.split("@")[0] ?? "Guest"}
               </p>
               <p className="num text-xs text-cloud-white/70 mt-1">{me?.email ?? ""}</p>
+              
+              {/* Streak counter */}
+              <div className="mt-2">
+                <StreakCounter compact />
+              </div>
             </div>
+            
             <span className="customs-stamp text-beacon-amber border-beacon-amber">Pro</span>
           </div>
-          <div className="grid grid-cols-3 gap-4 mt-6 pt-4 border-t border-cloud-white/20 text-center">
+          
+          {/* XP Progress Bar */}
+          <div className="mt-5 pt-4 border-t border-cloud-white/20">
+            <XPProgressBar compact />
+          </div>
+          
+          {/* Enhanced stats grid */}
+          <div className="grid grid-cols-4 gap-3 mt-5 pt-4 border-t border-cloud-white/20 text-center">
             <div>
-              <p className="num text-[10px] uppercase tracking-[0.2em] text-cloud-white/60">
+              <p className="num text-[9px] uppercase tracking-[0.18em] text-cloud-white/60">
                 Trips
               </p>
-              <p className="num text-xl">{(trips?.length ?? 0).toString().padStart(2, "0")}</p>
+              <p className="num text-lg">{(trips?.length ?? 0).toString().padStart(2, "0")}</p>
             </div>
             <div className="border-x border-cloud-white/20">
-              <p className="num text-[10px] uppercase tracking-[0.2em] text-cloud-white/60">
+              <p className="num text-[9px] uppercase tracking-[0.18em] text-cloud-white/60">
                 Countries
               </p>
-              <p className="num text-xl">{countries}</p>
+              <p className="num text-lg">{countries}</p>
             </div>
             <div>
-              <p className="num text-[10px] uppercase tracking-[0.2em] text-cloud-white/60">
+              <p className="num text-[9px] uppercase tracking-[0.18em] text-cloud-white/60">
                 Stops
               </p>
-              <p className="num text-xl">
+              <p className="num text-lg">
                 {(trips ?? []).reduce(
                   (s, t) => s + t.days.reduce((a, d) => a + d.stops.length, 0),
                   0,
                 )}
               </p>
             </div>
+            <div className="border-l border-cloud-white/20">
+              <p className="num text-[9px] uppercase tracking-[0.18em] text-cloud-white/60">
+                Total XP
+              </p>
+              <p className="num text-lg text-beacon-amber">{stats.totalXP.toLocaleString()}</p>
+            </div>
           </div>
         </ManifestStub>
+
+        {/* Daily Quests Widget */}
+        <div className="mt-5">
+          <DailyQuestWidget />
+        </div>
+
+        <PerforatedDivider label="Achievements" />
+
+        {/* Badge Collection Preview */}
+        <div className="mt-4">
+          <div className="flex items-center justify-between mb-3">
+            <div className="flex items-center gap-2">
+              <Trophy className="w-4 h-4 text-beacon-amber" />
+              <p className="num text-[10px] uppercase tracking-[0.18em] text-ink-60">
+                Your Badges
+              </p>
+            </div>
+            <p className="num text-[9px] text-cloud-white/50">
+              {badges.filter(b => b.unlocked).length} / {badges.length} unlocked
+            </p>
+          </div>
+          
+          <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
+            {BADGE_LIBRARY.slice(0, 8).map((badge) => (
+              <BadgeDisplay key={badge.id} badgeId={badge.id} size="sm" />
+            ))}
+          </div>
+        </div>
 
         <PerforatedDivider label="Preferences" />
 
@@ -166,7 +242,16 @@ function Profile() {
 
         <PerforatedDivider label="Membership" />
 
-        <Link to="/pricing" className="block mt-4">
+        {/* Referral Card */}
+        <div className="mt-4">
+          <ReferralCard onRefer={(emails) => {
+            toast.success("Invites sent!", { 
+              description: `${emails.length} friends invited. You'll earn $25 when they book.` 
+            });
+          }} />
+        </div>
+
+        <Link to="/pricing" className="block mt-6">
           <ManifestStub tone="navy" interactive>
             <div className="flex items-center justify-between gap-3">
               <div className="flex items-center gap-3 min-w-0">
