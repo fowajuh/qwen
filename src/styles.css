@@ -1,0 +1,173 @@
+@import "tailwindcss" source(none);
+@import "leaflet/dist/leaflet.css";
+@source "../src";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * GlobeTrotter — "Flight Manifest" design system.
+ * Tokens intentionally use travel-domain names: departure-navy, cloud-white,
+ * runway-sand, beacon-amber, horizon-teal, runway-red, ink-90.
+ * Do not use hex values in components — always reference tokens.
+ */
+
+@theme inline {
+  --color-background: var(--cloud-white);
+  --color-foreground: var(--ink-90);
+
+  --color-departure-navy: var(--departure-navy);
+  --color-cloud-white: var(--cloud-white);
+  --color-runway-sand: var(--runway-sand);
+  --color-beacon-amber: var(--beacon-amber);
+  --color-horizon-teal: var(--horizon-teal);
+  --color-runway-red: var(--runway-red);
+  --color-ink-90: var(--ink-90);
+  --color-ink-60: var(--ink-60);
+  --color-ink-30: var(--ink-30);
+
+  --color-card: var(--cloud-white);
+  --color-card-foreground: var(--ink-90);
+  --color-popover: var(--cloud-white);
+  --color-popover-foreground: var(--ink-90);
+  --color-primary: var(--beacon-amber);
+  --color-primary-foreground: var(--ink-90);
+  --color-secondary: var(--runway-sand);
+  --color-secondary-foreground: var(--departure-navy);
+  --color-muted: var(--runway-sand);
+  --color-muted-foreground: var(--ink-60);
+  --color-accent: var(--horizon-teal);
+  --color-accent-foreground: var(--cloud-white);
+  --color-destructive: var(--runway-red);
+  --color-destructive-foreground: var(--cloud-white);
+  --color-border: color-mix(in oklab, var(--ink-90) 10%, transparent);
+  --color-input: color-mix(in oklab, var(--ink-90) 12%, transparent);
+  --color-ring: var(--beacon-amber);
+
+  --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  --ease-manifest: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-flip: cubic-bezier(0.55, 0, 0.1, 1);
+}
+
+:root {
+  --departure-navy: #16223f;
+  --cloud-white: #faf8f4;
+  --runway-sand: #e7dcc5;
+  --beacon-amber: #f2a03d;
+  --horizon-teal: #2e7d6b;
+  --runway-red: #e15241;
+  --ink-90: #0e1626;
+  --ink-60: #4a5468;
+  --ink-30: #a5adbb;
+  --radius: 0.375rem;
+}
+
+.dark {
+  --cloud-white: #0e1626;
+  --ink-90: #faf8f4;
+  --ink-60: #b8bfcc;
+  --ink-30: #4a5468;
+  --runway-sand: #1f2d4a;
+  --departure-navy: #faf8f4;
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html { -webkit-font-smoothing: antialiased; }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv11";
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+  :focus-visible {
+    outline: 2px solid var(--beacon-amber);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      transition-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+    }
+  }
+}
+
+/* ---------- Signature motif: torn-ticket perforated edge ----------
+ * A card's top/bottom edge is "bitten" by a row of semicircles cut out via
+ * radial-gradient mask. No images. Works on any background.
+ */
+@utility ticket-stub {
+  --stub-notch: 9px;
+  --stub-step: 18px;
+  --stub-bg: var(--cloud-white);
+  position: relative;
+  background: var(--stub-bg);
+  padding: 1.25rem 1.25rem;
+  -webkit-mask:
+    radial-gradient(circle var(--stub-notch) at var(--stub-notch) 0, transparent 98%, #000 100%) top left / var(--stub-step) 100% repeat-x,
+    radial-gradient(circle var(--stub-notch) at var(--stub-notch) 100%, transparent 98%, #000 100%) bottom left / var(--stub-step) 100% repeat-x,
+    linear-gradient(#000 0 0);
+  mask:
+    radial-gradient(circle var(--stub-notch) at var(--stub-notch) 0, transparent 98%, #000 100%) top left / var(--stub-step) 100% repeat-x,
+    radial-gradient(circle var(--stub-notch) at var(--stub-notch) 100%, transparent 98%, #000 100%) bottom left / var(--stub-step) 100% repeat-x,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: source-over;
+  mask-composite: intersect;
+}
+
+@utility perforation-divider {
+  height: 2px;
+  background-image: radial-gradient(circle, var(--ink-30) 1px, transparent 1.5px);
+  background-size: 8px 2px;
+  background-repeat: repeat-x;
+  background-position: center;
+}
+
+@utility manifest-grain {
+  background-image:
+    linear-gradient(var(--cloud-white), var(--cloud-white)),
+    repeating-linear-gradient(0deg, color-mix(in oklab, var(--ink-90) 3%, transparent) 0 1px, transparent 1px 3px);
+  background-blend-mode: multiply;
+}
+
+@utility customs-stamp {
+  border: 1px solid color-mix(in oklab, currentColor 32%, transparent);
+  background: color-mix(in oklab, currentColor 7%, transparent);
+  border-radius: 999px;
+  padding: 0.3rem 0.7rem;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+}
+
+@utility num {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+/* ---------- Motion keyframes ---------- */
+@keyframes manifest-sweep {
+  100% { transform: translateX(100%); }
+}
+
+@keyframes manifest-reveal {
+  from { clip-path: circle(0px at var(--reveal-x) var(--reveal-y)); opacity: 1; }
+  80%  { opacity: 1; }
+  to   { clip-path: circle(var(--reveal-r) at var(--reveal-x) var(--reveal-y)); opacity: 0; }
+}
+
+.scrollbar-hide { scrollbar-width: none; -ms-overflow-style: none; }
+.scrollbar-hide::-webkit-scrollbar { display: none; }
