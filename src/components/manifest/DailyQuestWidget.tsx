@@ -173,6 +173,5 @@ interface XPGainToastProps {
 export function showXPGainToast({ amount, reason }: XPGainToastProps) {
   toast.success(`+${amount} XP`, {
     description: reason,
-    icon: "✨",
   });
 }

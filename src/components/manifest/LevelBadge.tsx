@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Trophy, Star, Crown } from "lucide-react";
+import { Trophy, Star, Crown, Sparkles, Sunrise, Award, Zap, Waves, Mountain, Building2, Laptop, Share2, Users, PenTool, HeartHandshake, Medal } from "lucide-react";
 import { useCurrentLevel, useNextLevel, useXPProgress, BADGE_LIBRARY, useUnlockedBadges } from "@/lib/gamification-store";
 import { cn } from "@/lib/utils";
 
@@ -34,6 +34,24 @@ const LEVEL_ICONS: Record<number, React.ComponentType<{ className?: string }>> =
   4: Trophy,
   5: Crown,
   6: Crown,
+};
+
+const BADGE_ICONS: Record<string, React.ComponentType<{ className?: string }>> = {
+  sparkles: Sparkles,
+  sunrise: Sunrise,
+  award: Award,
+  zap: Zap,
+  waves: Waves,
+  mountain: Mountain,
+  "building-2": Building2,
+  laptop: Laptop,
+  "share-2": Share2,
+  users: Users,
+  "pen-tool": PenTool,
+  "heart-handshake": HeartHandshake,
+  star: Star,
+  medal: Medal,
+  crown: Crown,
 };
 
 export function LevelBadge({ size = "md", showProgress = true, className }: LevelBadgeProps) {
@@ -200,6 +218,7 @@ export function BadgeDisplay({ badgeId, size = "md", showLocked = true, classNam
   if (!badgeData) return null;
   
   const sizeClasses = SIZE_CLASSES[size];
+  const IconComponent = BADGE_ICONS[badgeData.icon] ?? Sparkles;
   
   if (!isUnlocked && showLocked) {
     return (
@@ -208,7 +227,7 @@ export function BadgeDisplay({ badgeId, size = "md", showLocked = true, classNam
           "rounded-full bg-runway-sand/20 flex items-center justify-center",
           sizeClasses.badge
         )}>
-          <span className="text-lg">🔒</span>
+          <IconComponent className={cn(sizeClasses.icon, "text-cloud-white/30")} />
         </div>
         {!badgeData.unlocked && badgeData.progress !== undefined && (
           <div className="mt-1 text-center">
@@ -232,9 +251,10 @@ export function BadgeDisplay({ badgeId, size = "md", showLocked = true, classNam
         "rounded-full bg-gradient-to-br from-beacon-amber/20 to-horizon-teal/20 flex items-center justify-center border border-beacon-amber/30",
         sizeClasses.badge
       )}>
-        <span className={size === "lg" ? "text-2xl" : size === "md" ? "text-xl" : "text-lg"}>
-          {badgeData.icon}
-        </span>
+        <IconComponent className={cn(
+          size === "lg" ? "w-6 h-6" : size === "md" ? "w-5 h-5" : "w-4 h-4",
+          "text-beacon-amber"
+        )} />
       </div>
       
       {/* Tooltip on hover */}

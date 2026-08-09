@@ -589,7 +589,7 @@ function Recs() {
                   <h4 className="font-display text-lg text-departure-navy truncate">{rec.title}</h4>
                   {rec.rating && (
                     <p className="text-xs text-ink-60 mt-0.5">
-                      ⭐ {rec.rating} · {rec.reviewCount} reviews
+                      {rec.rating} · {rec.reviewCount} reviews
                     </p>
                   )}
                   <p className="text-xs text-ink-60 mt-0.5 num">
@@ -640,7 +640,7 @@ function Recs() {
             {/* Location info */}
             {(detailRec.city || detailRec.country) && (
               <p className="text-sm text-ink-60">
-                📍 {detailRec.city && detailRec.country
+                {detailRec.city && detailRec.country
                   ? `${detailRec.city}, ${detailRec.country}`
                   : detailRec.city || detailRec.country}
               </p>
@@ -667,7 +667,7 @@ function Recs() {
             {/* Rating */}
             {detailRec.rating && (
               <div className="flex items-center gap-2 p-3 bg-runway-sand rounded-sm">
-                <span className="text-lg">⭐ {detailRec.rating}</span>
+                <span className="text-lg">{detailRec.rating}</span>
                 {detailRec.reviewCount && (
                   <span className="text-sm text-ink-60">
                     Based on {detailRec.reviewCount} reviews
@@ -695,7 +695,7 @@ function Recs() {
                 rel="noopener noreferrer"
                 className="w-full flex items-center justify-center gap-2 num text-[11px] uppercase tracking-[0.2em] bg-runway-sand text-departure-navy px-4 py-2.5 rounded-sm hover:bg-runway-sand/80 transition-colors"
               >
-                📍 View on Google Maps
+                View on Google Maps
               </a>
             )}
 

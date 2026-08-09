@@ -159,7 +159,7 @@ export default function ListingDetail() {
               </div>
             </div>
             <div className="mb-6 rounded-xl bg-rose-50 p-3 text-center">
-              <p className="text-sm font-medium text-rose-700">🔥 High demand: {listing.bookingsThisWeek} people booked this week</p>
+              <p className="text-sm font-medium text-rose-700">High demand: {listing.bookingsThisWeek} people booked this week</p>
             </div>
             <div className="mb-6 space-y-3">
               <div className="grid grid-cols-2 gap-2">

@@ -269,7 +269,7 @@ export function createNotification(
 // Toast helper for XP gains with confetti
 export function showXPGainToast(xp: number, reason: string, levelUp = false) {
   if (levelUp) {
-    toast.success(`Level Up! 🎉`, {
+    toast.success(`Level Up!`, {
       description: `You've reached a new traveler level!`,
       duration: 4000,
     });
