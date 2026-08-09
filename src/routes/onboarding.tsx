@@ -6,6 +6,7 @@ import { toast } from "sonner";
 import { Globe } from "@/components/manifest/Globe";
 import { useUI, type TravelStyle } from "@/lib/store";
 import { auth } from "@/lib/auth";
+import { useGamification, XP_REWARDS } from "@/lib/gamification-store";
 
 export const Route = createFileRoute("/onboarding")({
   head: () => ({
@@ -75,6 +76,10 @@ function Onboarding() {
   const setOnboarded = useUI((s) => s.setOnboarded);
   const setPreferences = useUI((s) => s.setPreferences);
   const setPlan = useUI((s) => s.setPlan);
+  const addXP = useGamification((state) => state.addXP);
+  
+  // Track which gamification rewards have been given
+  const [rewardedSteps, setRewardedSteps] = useState<boolean[]>([false, false, false, false, false]);
 
   const finish = () => {
     setOnboarded(true);
@@ -104,6 +109,30 @@ function Onboarding() {
 
   const choose = (value: string) => {
     setPicked((p) => p.map((v, i) => (i === step ? value : v)));
+    
+    // Award XP for completing each onboarding step (once per step)
+    if (!rewardedSteps[step]) {
+      const newRewarded = [...rewardedSteps];
+      newRewarded[step] = true;
+      setRewardedSteps(newRewarded);
+      
+      // XP rewards for onboarding steps
+      if (step === 0) {
+        addXP(25, "Onboarding: Choose destination");
+        toast.success("+25 XP", { description: "Dream destination selected!" });
+      } else if (step === 1) {
+        addXP(15, "Onboarding: Travel style");
+        toast.success("+15 XP", { description: "Travel style identified!" });
+      } else if (step === 2) {
+        addXP(10, "Onboarding: Budget preference");
+      } else if (step === 3) {
+        addXP(10, "Onboarding: Notification setup");
+      } else if (step === 4) {
+        addXP(40, "Onboarding: Plan selection");
+        toast.success("+40 XP", { description: "Welcome aboard, Explorer!" });
+      }
+    }
+    
     if (step === 0) {
       const r = REGIONS.find((x) => x.label === value);
       if (r) setTilt({ lat: r.lat, lng: r.lng });

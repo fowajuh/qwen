@@ -1,12 +1,15 @@
 import { Link, useRouterState, useNavigate } from "@tanstack/react-router";
 import { AnimatePresence, motion } from "framer-motion";
-import { Compass, LogOut, MapPin, Search, Sparkles, User, Wallet } from "lucide-react";
+import { Compass, LogOut, MapPin, Search, Sparkles, User, Wallet, Bell } from "lucide-react";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { PageTransition } from "./PageTransition";
 import { ThemeToggle } from "./ThemeToggle";
 import { CommandPalette } from "./CommandPalette";
+import { NotificationPanel, createNotification, type Notification } from "./NotificationPanel";
 import { auth, logout } from "@/lib/auth";
 import { useUI, PLAN_LABEL } from "@/lib/store";
+import { useGamification } from "@/lib/gamification-store";
+import { toast } from "sonner";
 
 const nav = [
   { to: "/", label: "Trips", icon: Compass },
@@ -103,7 +106,76 @@ export function AppShell({ children }: { children: ReactNode }) {
   const navigate = useNavigate();
   const setCommandPaletteOpen = useUI((s) => s.setCommandPaletteOpen);
   const plan = useUI((s) => s.plan);
+  const [notifications, setNotifications] = useState<Notification[]>([]);
   useRequireAuth();
+
+  // Demo notifications on mount - in production these would come from a real-time source
+  useEffect(() => {
+    // Simulate initial notifications
+    const demoNotifications: Notification[] = [
+      createNotification(
+        "achievement",
+        "Welcome Aboard!",
+        "You've earned your first badge: First Step. Keep exploring!",
+        "high"
+      ),
+      createNotification(
+        "reminder",
+        "Daily Quest Available",
+        "Save 3 listings today to earn +30 XP and unlock progress.",
+        "medium",
+        "View Quests"
+      ),
+      createNotification(
+        "promotion",
+        "Weekend Warrior Challenge",
+        "Book 2 stays this month to unlock the Weekend Warrior badge + 5% fee discount.",
+        "low"
+      ),
+    ];
+    setNotifications(demoNotifications);
+    
+    // Show toast for first notification
+    setTimeout(() => {
+      toast.success("New Achievement Unlocked!", {
+        description: "You've earned the First Step badge.",
+        duration: 4000,
+      });
+    }, 1500);
+  }, []);
+
+  const handleMarkRead = (id: string) => {
+    setNotifications(prev => prev.map(n => n.id === id ? { ...n, read: true } : n));
+  };
+
+  const handleMarkAllRead = () => {
+    setNotifications(prev => prev.map(n => ({ ...n, read: true })));
+  };
+
+  const handleDelete = (id: string) => {
+    setNotifications(prev => prev.filter(n => n.id !== id));
+  };
+
+  const handleAction = (notification: Notification) => {
+    // Handle notification actions based on type
+    switch (notification.type) {
+      case "booking":
+        navigate({ to: "/trips/$tripId", params: { tripId: "demo" } });
+        break;
+      case "message":
+        toast.info("Opening messages...", { duration: 1500 });
+        break;
+      case "price_drop":
+        navigate({ to: "/recommendations" });
+        break;
+      case "achievement":
+      case "referral":
+        navigate({ to: "/profile" });
+        break;
+      default:
+        toast.info("Feature coming soon", { duration: 1500 });
+    }
+  };
 
   return (
     <div className="min-h-screen bg-cloud-white flex flex-col">
@@ -148,6 +220,14 @@ export function AppShell({ children }: { children: ReactNode }) {
               {plan === "explorer" ? "Upgrade" : PLAN_LABEL[plan]}
             </Link>
             <ThemeToggle />
+            {/* Notification Panel */}
+            <NotificationPanel
+              notifications={notifications}
+              onMarkRead={handleMarkRead}
+              onMarkAllRead={handleMarkAllRead}
+              onDelete={handleDelete}
+              onAction={handleAction}
+            />
             <button
               aria-label="Open command palette"
               onClick={() => setCommandPaletteOpen(true)}
